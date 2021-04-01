@@ -20,27 +20,45 @@
 	</head>
 	<body>
 		<header>
-			<h2 style="text-align: center;background-color: #666;padding: 30px;font-size: 35px;color: white;">Please Login</h2>
+			<h2 style="text-align: center;background-color: #666;padding: 30px;font-size: 35px;color: white;">Registration Form</h2>
 		</header>
 		
-		<center style="position: fixed;left: 0;top:25%;width: 100%;">
+		<center>
 			<img src="../images/jpnlogo.png" height="30%" width = "30%">
 			<table style="width:30%;border-spacing:10px" >
 				<form name="loginForm" action="login.php" method ="post" onsubmit="return validateForm()">
 					<tr><td><label>Email</label></td>
 					<td><input type="text" id="idusername" name="username" style="border solid black: 2px;border-radius: 4px;width: 80%;padding: 12px 20px;"></td></tr>
+					<tr><td><label>Name</label></td>
+					<td><input type="text" id="idfullname" name="fullname" style="border solid black: 2px;border-radius: 4px;width: 80%;padding: 12px 20px;"></td></tr>
+					<tr><td><label>Phone</label></td>
+					<td><input type="phone" id="idphone" name="phone" style="border solid black: 2px;border-radius: 4px;width: 80%;padding: 12px 20px;"></td></tr>
+					<tr><td><label>School</label></td>
+						<td>
+							<select name="schools" id="idschool" style="border solid black: 2px;border-radius: 4px;width: 90%;padding: 12px 20px;">
+							<option value="noselection">Please select your school</option>
+								<option value="SK Alor Setar">SK Alor Setar</option>
+								<option value="SK Batu Hampar">SK Batu Hampar</option>
+								<option value="SK Titi Gajah">SK Titi Gajah</option>
+								<option value="SK Taman Aman">SK Taman Aman</option>
+								<option value="SK (Felda) Bukit Tangga">SK (Felda) Bukit Tangga</option>
+							</select>
+						</td>
+					</tr>
 					<tr><td><label>Password</label></td>
 					<td><input type="password" id="idpass" name="password" style="border solid black: 2px;border-radius: 4px;width: 80%;padding: 12px 20px;"></td></tr>
+					<tr><td><label>Verify Password</label></td>
+					<td><input type="password" id="idpass2" name="passwordb" style="border solid black: 2px;border-radius: 4px;width: 80%;padding: 12px 20px;"></td></tr>
 					<tr><td><td><input type="submit" value="Submit" style="width:90%;background-color: #008CBA;padding: 15px 32px;border-radius: 12px;color:white"></td></tr>
 					</form>
-					</table><br><br>
-					<a href="register.html">Don't have an account? Register new account</a>
-					</center>
-					<footer>
-						<p>
+				</table><br><br>
+				<a href="login.html">Already register? Login now</a>
+			</center>
+			<footer>
+				<p>
 					<h2 style="text-align: center;background-color: #666;padding: 15px;font-size: 12px;color: white;position: fixed;left: 0;bottom: 0;width: 100%;">Copyright@JPN 2021 </h2>
 				</p>
 			</footer>
 			
 		</body>
-	</html>				
+	</html>								
