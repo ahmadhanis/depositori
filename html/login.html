@@ -2,7 +2,22 @@
 <html>
 	<head>
 		<title>Login Form</title>
-		
+		<script>
+			function validateForm(){
+				var username = document.forms["loginForm"]["idusername"].value;
+				var pass = document.forms["loginForm"]["idpass"].value;
+				if ((username =="") || (pass =="")){
+					alert("Please fill out your username/password");
+					return false;
+				}
+				const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+				if(!re.test(String(username))){
+					alert("Please correct your email");
+					return false;
+				}
+				
+			}
+		</script>
 	</head>
 	<body>
 		<header>
@@ -10,22 +25,22 @@
 		</header>
 		
 		<center style="position: fixed;left: 0;top:25%;width: 100%;">
-		<img src="../images/jpnlogo.png" height="30%" width = "30%">
+			<img src="../images/jpnlogo.png" height="30%" width = "30%">
 			<table style="width:30%;border-spacing:10px" >
-				<form action="login.php" method ="post">
+				<form name="loginForm" action="login.php" method ="post" onsubmit="return validateForm()">
 					<tr><td><label>Email</label></td>
-					<td><input type="text" id="idusername" name="username" style="border solid black: 2px;border-radius: 4px;width: 80%;padding: 12px 20px;" required></td></tr>
+					<td><input type="text" id="idusername" name="username" style="border solid black: 2px;border-radius: 4px;width: 80%;padding: 12px 20px;"></td></tr>
 					<tr><td><label>Password</label></td>
-					<td><input type="password" id="idpass" name="password" style="border solid black: 2px;border-radius: 4px;width: 80%;padding: 12px 20px;" required></td></tr>
+					<td><input type="password" id="idpass" name="password" style="border solid black: 2px;border-radius: 4px;width: 80%;padding: 12px 20px;"></td></tr>
 					<tr><td><td><input type="submit" value="Submit" style="width:90%;background-color: #008CBA;padding: 15px 32px;border-radius: 12px;color:white"></td></tr>
 					</form>
-				</table>
-			</center>
-			<footer>
-				<p>
+					</table>
+					</center>
+					<footer>
+						<p>
 					<h2 style="text-align: center;background-color: #666;padding: 15px;font-size: 12px;color: white;position: fixed;left: 0;bottom: 0;width: 100%;">Copyright@JPN 2021 </h2>
 				</p>
 			</footer>
 			
 		</body>
-	</html>		
+	</html>				
