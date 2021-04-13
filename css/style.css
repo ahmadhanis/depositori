@@ -12,7 +12,7 @@ body {
 /* Header/logo Title */
 
 .header {
-    padding: 40px;
+    padding: 25px;
     text-align: center;
     background: #1abc9c;
     color: white;
@@ -21,8 +21,9 @@ body {
 /* Increase the font size of the heading */
 
 .header h1 {
-    font-size: 40px;
+    font-size: 30px;
 }
+
 
 /* Style the top navigation bar */
 
@@ -78,9 +79,7 @@ body {
 
 /* Right-aligned link */
 
-.bottomnavbar a.right {
-    float: right;
-}
+
 
 /* Change color on hover */
 
@@ -94,10 +93,10 @@ body {
 /* Main column */
 
 .main {
-    -ms-flex: 70%;
+    -ms-flex: 100%;
     /* IE10 */
-    flex: 70%;
-    background-color: white;
+    flex: 100%;
+    background-color: rgb(255, 255, 255);
     padding: 100px;
 }
 
@@ -114,44 +113,44 @@ label {
     background: #ddd;
 }
 
-/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 
-
-
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-
-@media screen and (max-width: 400px) {
-    .navbar a {
-        float: none;
-        width: 100%;
-    }
+@media screen and (max-width: 600px) {
     .col-25, .col-75, input[type=submit] {
         width: 100%;
         margin-top: 0;
     }
+    .main{
+        padding: 10px;
+    }
+    
+}
+/* Responsive layout - when the screen is more than 1000px wide */
+
+@media screen and (min-width: 1000px) {
+    .container {
+        width: 50%;
+        margin: auto;
+    }
+    .main{
+        padding: 100px;
+    }
+    
 }
 
 img {
     width: 80%;
     height: auto;
     max-width: 500px;
-    min-width: 300px;
 }
 
-input[type=text], select, textarea {
+input[type=text], input[type=tel], input[type=password], select {
     width: 100%;
-    padding: 12px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-}
-
-input[type=password], select, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
+    box-sizing: border-box;
 }
 
 input[type=submit] {
@@ -162,10 +161,11 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
     float: right;
+    width: 100%;
 }
 
 input[type=submit]:hover {
-    background-color: #1abc9c;
+    background-color: #1a977e;
 }
 
 .container {
@@ -176,13 +176,13 @@ input[type=submit]:hover {
 
 .col-25 {
     float: left;
-    width: 25%;
+    width: 30%;
     margin-top: 6px;
 }
 
 .col-75 {
     float: left;
-    width: 75%;
+    width: 70%;
     margin-top: 6px;
 }
 

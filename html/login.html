@@ -3,6 +3,7 @@
 
 <head>
 	<title>Login Form</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="../js/validate.js"></script>
 	<link rel="stylesheet" href="../css/style.css">
 </head>
@@ -13,28 +14,47 @@
 		<p>Application for JPN Kedah.</p>
 	</div>
 	<div class="navbar">
-
 		<a href="register.html" class="right">Register</a>
 	</div>
 	<div class="main">
 		<center>
 			<img src="../images/jpnlogo.png">
-			<div class="container">
-				<form name="loginForm" action="login.php" method="post" onsubmit="return validateForm()">
-					<div class="row">
-						<div class="col-25"><label>Email</label></div>
-						<div class="col-75"><input type="text" id="idusername" name="username"></div>
-					</div>
-					<div class="row">
-						<div class="col-25"><label>Password</label></div>
-						<div class="col-75"><input type="password" id="idpass" name="password"></div>
-					</div>
-					<div class="row">
-						<input type="submit" value="Submit">
-					</div>
-				</form>
-			</div>
 		</center>
+		<div class="container">
+			<form name="loginForm" action="login.php" onsubmit="return validateLoginForm()" method="post">
+				<div class="row">
+					<div class="col-25">
+						<label for="femail">Email</label>
+					</div>
+					<div class="col-75">
+						<input type="text" id="idemail" name="email" placeholder="Your email..">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-25">
+						<label for="lname">Password</label>
+					</div>
+					<div class="col-75">
+						<input type="password" id="idpass" name="password" placeholder="Your password..">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-75">
+						<div>
+							<label>
+								<input type="checkbox" checked="checked" name="remember"> Remember me
+							</label>
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<input type="submit" value="Submit">
+				</div>
+			</form>
+		</div>
+		
+
 	</div>
 
 	<div class="bottomnavbar">
