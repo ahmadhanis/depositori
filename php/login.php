@@ -13,7 +13,7 @@ $count = $stmt->rowCount();
 $row   = $stmt->fetch(PDO::FETCH_ASSOC);
 if($count == 1 && !empty($row)) {
     echo "<script> alert('Login successful')</script>";
-    
+    echo "<script> window.location.replace('../php/mainpage.php')</script>";
 }else{
     echo "<script> alert('Login fail')</script>";
     echo "<script> window.location.replace('../html/login.html')</script>";

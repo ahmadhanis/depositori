@@ -24,3 +24,4 @@ function validateRegForm() {
         return false;
     }
 }
+
