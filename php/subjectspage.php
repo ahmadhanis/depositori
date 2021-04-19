@@ -1,4 +1,5 @@
 <?php
+$form = $_GET['form'];
 session_start();
 $username = $_SESSION["email"];
 $password = $_SESSION["password"];
@@ -8,7 +9,7 @@ $password = $_SESSION["password"];
 <html>
 
 <head>
-    <title>Main Page</title>
+    <title>Subjects Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="../js/validate.js"></script>
     <link rel="stylesheet" href="../css/style.css">
@@ -21,23 +22,25 @@ $password = $_SESSION["password"];
 
     </div>
     <div class="topnavbar">
-        <a href="#">Search</a>
+        <a href="mainpage.php">Search</a>
         <a href="#">My Questions</a>
         <a href="#">My Profile</a>
         <a href="../html/login.html" class="right">Logout</a>
     </div>
     <center>
         <h2>Welcome <?php echo $username ?></h2>
-        <h2>Please select Form</h2>
+        <?php
+        echo "<h2> Selected " . $form . "</h2>";
+        ?>
+        <h2>Please select subject</h2>
     </center>
     <div class="main">
-
         <div class="row">
 
             <div class="column-card">
-                <a href="subjectspage.php?form=Form 1" style="text-decoration:none; color:#000000">
+                <a href="subjectpage.php?form=<?php echo $form ?>&subject=Mathematic" style="text-decoration:none; color:#000000">
                     <div class="card" type="submit">
-                        <h3>Form 1</h3>
+                        <h3>Mathematic</h3>
                         <p>10 Subjects</p>
                         <p>10 new questions today</p>
                     </div>
@@ -45,9 +48,9 @@ $password = $_SESSION["password"];
             </div>
 
             <div class="column-card">
-                <a href="subjectspage.php?form=Form 2" style="text-decoration:none; color:#000000">
+                <a href="subjectpage.php?form=<?php echo $form ?>&subject=English" style="text-decoration:none; color:#000000">
                     <div class="card">
-                        <h3>Form 2</h3>
+                        <h3>English</h3>
                         <p>10 Subjects</p>
                         <p>10 new questions today</p>
                     </div>
@@ -58,9 +61,9 @@ $password = $_SESSION["password"];
         <div class="row">
 
             <div class="column-card">
-                <a href="subjectspage.php?form=Form 3" style="text-decoration:none; color:#000000">
+                <a href="subjectpage.php?form=<?php echo $form ?>&subject=Science" style="text-decoration:none; color:#000000">
                     <div class="card">
-                        <h3>Form 3</h3>
+                        <h3>Science</h3>
                         <p>10 Subjects</p>
                         <p>10 new questions today</p>
 
@@ -69,9 +72,9 @@ $password = $_SESSION["password"];
             </div>
 
             <div class="column-card">
-                <a href="subjectspage.php?form=Form 4" style="text-decoration:none; color:#000000">
+                <a href="subjectpage.php?form=<?php echo $form ?>&subject=History" style="text-decoration:none; color:#000000">
                     <div class="card">
-                        <h3>Form 4</h3>
+                        <h3>History</h3>
                         <p>10 Subjects</p>
                         <p>10 new questions today</p>
 
@@ -82,27 +85,27 @@ $password = $_SESSION["password"];
         <div class="row">
 
             <div class="column-card">
-                <a href="subjectspage.php?form=Form 5" style="text-decoration:none; color:#000000">
+                <a href="subjectpage.php?form=<?php echo $form ?>&subject=Bahasa Melayu" style="text-decoration:none; color:#000000">
                     <div class="card">
-                        <h3>Form 5</h3>
+                        <h3>Bahasa Melayu</h3>
                         <p>10 Subjects</p>
                         <p>10 new questions today</p>
                     </div>
                 </a>
             </div>
             <div class="column-card">
-                <a href="subjectspage.php?form=Form 6" style="text-decoration:none; color:#000000">
+                <a href="subjectpage.php?form=<?php echo $form ?>&subject=Pendidikan Islam" style="text-decoration:none; color:#000000">
                     <div class="card">
-                        <h3>Form 6</h3>
+                        <h3>Pendidikan Islam</h3>
                         <p>10 Subjects</p>
                         <p>10 new questions today</p>
                     </div>
                 </a>
             </div>
         </div>
+
 
     </div>
-
     <div class="bottomnavbar">
         <a href="../index.html">Home</a>
         <a href="#news">News</a>

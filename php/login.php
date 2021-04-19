@@ -1,9 +1,13 @@
 <?php
 include_once("dbconnect.php");
+session_start();
+
 $email = trim($_POST['email']);
 $password = trim(sha1($_POST['password']));
+$_SESSION["email"] = $email;
+$_SESSION["password"] = $password;
 
-$sqllogin = "SELECT * FROM tbl_user WHERE email = '$email' AND password = '$password' AND otp = '1'";
+$sqllogin = "SELECT * FROM tbl_user WHERE :email = '$email' AND :password = '$password' AND otp = '1'";
 
 $stmt = $conn->prepare($sqllogin);
 $stmt->bindParam('email', $email, PDO::PARAM_STR);
@@ -18,5 +22,3 @@ if($count == 1 && !empty($row)) {
     echo "<script> alert('Login fail')</script>";
     echo "<script> window.location.replace('../html/login.html')</script>";
 }
-
-?>
