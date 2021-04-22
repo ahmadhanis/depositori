@@ -1,24 +1,22 @@
 <?php
-include_once("dbconnect.php");
 session_start();
-
+include_once("dbconnect.php");
 $email = trim($_POST['email']);
 $password = trim(sha1($_POST['password']));
-$_SESSION["email"] = $email;
-$_SESSION["password"] = $password;
+$sqllogin = "SELECT * FROM tbl_user WHERE email = '$email' AND password = '$password'";
 
-$sqllogin = "SELECT * FROM tbl_user WHERE :email = '$email' AND :password = '$password' AND otp = '1'";
-
-$stmt = $conn->prepare($sqllogin);
-$stmt->bindParam('email', $email, PDO::PARAM_STR);
-$stmt->bindValue('password', $password, PDO::PARAM_STR);
-$stmt->execute();
-$count = $stmt->rowCount();
-$row   = $stmt->fetch(PDO::FETCH_ASSOC);
-if($count == 1 && !empty($row)) {
+$select_stmt = $conn->prepare($sqllogin);
+$select_stmt->execute();
+$row = $select_stmt->fetch(PDO::FETCH_ASSOC);
+if ($select_stmt->rowCount() > 0) {
+    $_SESSION["session_id"] = session_id();
+    $_SESSION["email"] = $email;
+    $_SESSION["name"] = $row['name'];
     echo "<script> alert('Login successful')</script>";
-    echo "<script> window.location.replace('../php/mainpage.php')</script>";
-}else{
+    echo "<script> window.location.replace('../php/depository.php')</script>";
+} else {
+    session_unset();
+    session_destroy();
     echo "<script> alert('Login fail')</script>";
     echo "<script> window.location.replace('../html/login.html')</script>";
 }

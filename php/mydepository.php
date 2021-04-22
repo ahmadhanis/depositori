@@ -1,7 +1,13 @@
 <?php
 session_start();
-$username = $_SESSION["email"];
-$password = $_SESSION["password"];
+if ($_SESSION["session_id"]) {
+    $username = $_SESSION["email"];
+    $name = $_SESSION["name"];
+} else {
+    echo "<script> alert('Session not available. Please login')</script>";
+    echo "<script> window.location.replace('../html/login.html')</script>";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +16,7 @@ $password = $_SESSION["password"];
 <head>
     <title>Main Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="../js/validate.js"></script>
+    <script src="../js/depositori.js"></script>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -21,21 +27,21 @@ $password = $_SESSION["password"];
 
     </div>
     <div class="topnavbar">
-        <a href="#">Search</a>
-        <a href="#">My Questions</a>
+        <a href="depository.php">Depository</a>
+        <a href="mydepository.php">My Depository</a>
         <a href="#">My Profile</a>
         <a href="../html/login.html" class="right">Logout</a>
     </div>
     <center>
-        <h2>Welcome <?php echo $username ?></h2>
-        <h2>Please select Form</h2>
+        <h3>Welcome <?php echo $name ?></h>
+            <h3>Please select your Form</h3>
     </center>
     <div class="main">
 
         <div class="row">
 
             <div class="column-card">
-                <a href="subjectspage.php?form=Form 1" style="text-decoration:none; color:#000000">
+                <a href="mysubjectslist.php?yearform=Form 1" style="text-decoration:none; color:#000000">
                     <div class="card" type="submit">
                         <h3>Form 1</h3>
                         <p>10 Subjects</p>
@@ -45,7 +51,7 @@ $password = $_SESSION["password"];
             </div>
 
             <div class="column-card">
-                <a href="subjectspage.php?form=Form 2" style="text-decoration:none; color:#000000">
+                <a href="mysubjectslist.php?yearform=Form 2" style="text-decoration:none; color:#000000">
                     <div class="card">
                         <h3>Form 2</h3>
                         <p>10 Subjects</p>
@@ -58,7 +64,7 @@ $password = $_SESSION["password"];
         <div class="row">
 
             <div class="column-card">
-                <a href="subjectspage.php?form=Form 3" style="text-decoration:none; color:#000000">
+                <a href="mysubjectslist.php?yearform=Form 3" style="text-decoration:none; color:#000000">
                     <div class="card">
                         <h3>Form 3</h3>
                         <p>10 Subjects</p>
@@ -69,7 +75,7 @@ $password = $_SESSION["password"];
             </div>
 
             <div class="column-card">
-                <a href="subjectspage.php?form=Form 4" style="text-decoration:none; color:#000000">
+                <a href="mysubjectslist.php?yearform=Form 4" style="text-decoration:none; color:#000000">
                     <div class="card">
                         <h3>Form 4</h3>
                         <p>10 Subjects</p>
@@ -82,7 +88,7 @@ $password = $_SESSION["password"];
         <div class="row">
 
             <div class="column-card">
-                <a href="subjectspage.php?form=Form 5" style="text-decoration:none; color:#000000">
+                <a href="mysubjectslist.php?yearform=Form 5" style="text-decoration:none; color:#000000">
                     <div class="card">
                         <h3>Form 5</h3>
                         <p>10 Subjects</p>
@@ -91,7 +97,7 @@ $password = $_SESSION["password"];
                 </a>
             </div>
             <div class="column-card">
-                <a href="subjectspage.php?form=Form 6" style="text-decoration:none; color:#000000">
+                <a href="mysubjectslist.php?yearform=Form 6" style="text-decoration:none; color:#000000">
                     <div class="card">
                         <h3>Form 6</h3>
                         <p>10 Subjects</p>

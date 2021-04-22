@@ -65,7 +65,6 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
-    
 }
 
 .bottomnavbar a {
@@ -208,6 +207,7 @@ input[type=submit]:hover {
     float: left;
     width: 70%;
     margin-top: 6px;
+
 }
 
 /* Clear floats after the columns */
@@ -251,4 +251,42 @@ input[type=submit]:hover {
 
 .card:hover {
     box-shadow: 0 16px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+input[type=checkbox] {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(2);
+    /* IE */
+    -moz-transform: scale(2);
+    /* FF */
+    -webkit-transform: scale(2);
+    /* Safari and Chrome */
+    -o-transform: scale(2);
+    /* Opera */
+    transform: scale(2);
+    padding: 10px;
+}
+
+/* Might want to wrap a span around your checkbox text */
+
+.checkboxtext {
+    /* Checkbox text */
+    font-size: 110%;
+    display: inline;
+}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:50px;
+	right:30px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+.my-float{
+	margin-top:22px;
 }

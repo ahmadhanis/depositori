@@ -8,6 +8,7 @@ if ($_SESSION["session_id"]) {
     echo "<script> alert('Session not available. Please login')</script>";
     echo "<script> window.location.replace('../html/login.html')</script>";
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -29,21 +30,21 @@ if ($_SESSION["session_id"]) {
     <div class="topnavbar">
         <a href="depository.php">Depository</a>
         <a href="mydepository.php">My Depository</a>
-        <a href="#">Profile</a>
+        <a href="#">My Profile</a>
         <a href="../html/login.html" class="right">Logout</a>
     </div>
     <center>
-        <h3>Welcome <?php echo $username ?></h3>
+        <h3>Welcome <?php echo $name ?></h3>
         <?php
         echo "<h3> Selected " . $yearform . "</h3>";
         ?>
-        <h3>Please select subject</h3>
+        <h3>Please select your subject</h3>
     </center>
     <div class="main">
         <div class="row">
 
             <div class="column-card">
-                <a href="questionslist.php?yearform=<?php echo $yearform ?>&subject=Mathematic" style="text-decoration:none; color:#000000">
+                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Mathematic" style="text-decoration:none; color:#000000">
                     <div class="card" type="submit">
                         <h3>Mathematic</h3>
                         <p>10 Subjects</p>
@@ -53,7 +54,7 @@ if ($_SESSION["session_id"]) {
             </div>
 
             <div class="column-card">
-                <a href="questionslist.php?yearform=<?php echo $yearform ?>&subject=English" style="text-decoration:none; color:#000000">
+                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=English" style="text-decoration:none; color:#000000">
                     <div class="card">
                         <h3>English</h3>
                         <p>10 Subjects</p>
@@ -66,7 +67,7 @@ if ($_SESSION["session_id"]) {
         <div class="row">
 
             <div class="column-card">
-                <a href="questionslist.php?yearform=<?php echo $yearform ?>&subject=Science" style="text-decoration:none; color:#000000">
+                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Science" style="text-decoration:none; color:#000000">
                     <div class="card">
                         <h3>Science</h3>
                         <p>10 Subjects</p>
@@ -77,7 +78,7 @@ if ($_SESSION["session_id"]) {
             </div>
 
             <div class="column-card">
-                <a href="questionslist.php?yearform=<?php echo $yearform ?>&subject=History" style="text-decoration:none; color:#000000">
+                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=History" style="text-decoration:none; color:#000000">
                     <div class="card">
                         <h3>History</h3>
                         <p>10 Subjects</p>
@@ -90,7 +91,7 @@ if ($_SESSION["session_id"]) {
         <div class="row">
 
             <div class="column-card">
-                <a href="questionslist.php?yearform=<?php echo $yearform ?>&subject=Bahasa Melayu" style="text-decoration:none; color:#000000">
+                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Bahasa Melayu" style="text-decoration:none; color:#000000">
                     <div class="card">
                         <h3>Bahasa Melayu</h3>
                         <p>10 Subjects</p>
@@ -99,7 +100,7 @@ if ($_SESSION["session_id"]) {
                 </a>
             </div>
             <div class="column-card">
-                <a href="questionslist.php?yearform=<?php echo $yearform ?>&subject=Pendidikan Islam" style="text-decoration:none; color:#000000">
+                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Pendidikan Islam" style="text-decoration:none; color:#000000">
                     <div class="card">
                         <h3>Pendidikan Islam</h3>
                         <p>10 Subjects</p>
