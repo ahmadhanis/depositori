@@ -3,7 +3,7 @@ session_start();
 include_once("dbconnect.php");
 
 if ($_SESSION["session_id"]) {
-    $username = $_SESSION["email"];
+    $user_email = $_SESSION["email"];
     $name = $_SESSION["name"];
     $yearform = $_GET['yearform'];
     $subject = $_GET['subject'];
@@ -58,13 +58,14 @@ if ($_SESSION["session_id"]) {
     </div>
     <center>
         <?php
+        echo "<h3> Welcome " . $name . "</h3>";
         echo "<h3> Selected " . $yearform . "</h3>";
         echo "<h3> Subject Selected " . $subject . "</h3>";
         ?>
     </center>
     <div class="main">
         <div class="container">
-            <form name="questionsForm" action="subjectpage.php" method="get">
+            <form name="questionsForm" action="newquestion.php" method="get">
                 <div class="row">
                     <div class="col-25">
                         <label for="fname">Question</label>

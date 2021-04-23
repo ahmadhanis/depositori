@@ -1,15 +1,31 @@
 <?php
 session_start();
+include_once("dbconnect.php");
+
 if ($_SESSION["session_id"]) {
-    $username = $_SESSION["email"];
+    $user_email = $_SESSION["email"];
     $name = $_SESSION["name"];
     $yearform = $_GET['yearform'];
     $subject = $_GET['subject'];
+
+    $sqllistquestions = "SELECT * FROM tbl_questions WHERE user_email = '$user_email' AND form = '$yearform' AND subject_name = '$subject' ORDER BY date_created ASC";
+    $stmt = $conn->prepare($sqllistquestions);
+    $stmt->execute();
+    // set the resulting array to associative
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $questions = $stmt->fetchAll();
 } else {
     echo "<script> alert('Session not available. Please login')</script>";
     echo "<script> window.location.replace('../html/login.html')</script>";
 }
-
+function limitStr($str)
+{
+    if (strlen($str) > 30) {
+        return $str = substr($str, 0, 25) . '...';
+    } else {
+        return $str;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,10 +60,52 @@ if ($_SESSION["session_id"]) {
         echo "<h3>Subject Selected " . $subject . "</h3>";
         ?>
     </center>
-    <a href="newquestion.php?yearform=<?php echo $yearform ?>&subject=<?php echo $subject?>" class="float">
+    <div class="container">
+        <center>
+            <form class="searchform" action="myquestionslist.php" ">
+            <div class=" row">
+                <div class="col-75">
+                    <input type="text" placeholder="Search.." name="search2">
+                </div>
+                <div class="col-25">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
+        </center>
+        </form>
+    </div>
+    <a href="newquestion.php?yearform=<?php echo $yearform ?>&subject=<?php echo $subject ?>" class="float">
         <i class="fa fa-plus my-float"></i>
     </a>
     <div class="main">
+        <?php echo "<table border='1' align='center'>
+        <tr>
+          <th>No</th>
+          <th>Q.ID</th>
+          <th>Questions</th>
+          <th>A</th>
+          <th>B</th>
+          <th>C</th>
+          <th>D</th>
+          <th>Answer</th>
+          <th>Date</th>
+        </tr>";
+        $num = 1;
+        foreach ($questions as $question) {
+            echo "<tr>";
+            echo "<td>" . $num++ . "</td>";
+            echo "<td>" . $question['q_id'] . "</td>";
+            echo "<td>" . limitStr($question['question']) . "</td>";
+            echo "<td>" . limitStr($question['ans_a']) . "</td>";
+            echo "<td>" . limitStr($question['ans_b']) . "</td>";
+            echo "<td>" . limitStr($question['ans_c']) . "</td>";
+            echo "<td>" . limitStr($question['ans_d']) . "</td>";
+            echo "<td>" . limitStr($question['ans']) . "</td>";
+            echo "<td>" . date_format(date_create($question['date_created']), 'd/m/y H:i') . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        ?>
+
     </div>
     <div class="bottomnavbar">
         <a href="../index.html">Home</a>

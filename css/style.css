@@ -129,6 +129,9 @@ label {
         width: 100%;
         height: auto;
     }
+    table {
+        width: 100%;
+    }
 }
 
 /* Responsive layout - when the screen is more than 1000px wide */
@@ -157,6 +160,9 @@ label {
     .card {
         width: 80%;
         height: auto;
+    }
+    table {
+        width: 80%;
     }
 }
 
@@ -207,7 +213,6 @@ input[type=submit]:hover {
     float: left;
     width: 70%;
     margin-top: 6px;
-
 }
 
 /* Clear floats after the columns */
@@ -275,18 +280,51 @@ input[type=checkbox] {
     display: inline;
 }
 
-.float{
-	position:fixed;
-	width:60px;
-	height:60px;
-	bottom:50px;
-	right:30px;
-	background-color:#0C9;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-	box-shadow: 2px 2px 3px #999;
+.float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 50px;
+    right: 30px;
+    background-color: #0C9;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
 }
-.my-float{
-	margin-top:22px;
+
+.my-float {
+    margin-top: 22px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+    overflow-x: auto;
+}
+
+th {
+    text-align: left;
+    padding: 8px;
+    background-color: #1abc9c;
+    color: white;
+}
+
+td {
+    text-align: left;
+    padding: 8px;
+    max-height: 22px;
+}
+
+
+
+form.searchform button:hover {
+    background: #0b7dda;
+}
+
+
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
 }
