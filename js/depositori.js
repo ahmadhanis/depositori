@@ -12,6 +12,15 @@ function validateLoginForm() {
     }
     setCookies(10);
 }
+function mytopnavFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnavbar") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnavbar";
+    }
+  }
+
 function validateRegForm() {
     var email = document.forms["registerForm"]["idemail"].value;
     var pass = document.forms["registerForm"]["idpass"].value;

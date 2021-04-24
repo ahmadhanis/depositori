@@ -28,7 +28,7 @@ if ($_SESSION["session_id"]) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="../js/depositori.js"></script>
     <link rel="stylesheet" href="../css/style.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -37,23 +37,36 @@ if ($_SESSION["session_id"]) {
         <p>Application for JPN Kedah.</p>
 
     </div>
-    <div class="topnavbar">
+    <div class="topnavbar" id="myTopnav">
         <a href="depository.php">Depository</a>
         <a href="mydepository.php">My Depository</a>
         <a href="#">My Profile</a>
-        <a href="../html/login.html" class="right">Logout</a>
+        <a href="#">Contact Us</a>
+        <a href="../html/login.html" onclick="logout()" class="right">Logout</a>
+        <a href="javascript:void(0);" class="icon" onclick="mytopnavFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
     </div>
-    <center>
-        <h3>Welcome <?php echo $name ?></h3>
-        <?php
-        echo "<h3> Selected " . $yearform . "</h3>";
-        ?>
-        <?php
-        echo "<h3>Subject Selected " . $subject . "</h3>";
-        ?>
-    </center>
-
     <div class="main">
+        <div class="row-single">
+            <div class="card-header" type="submit">
+                <h3>My Depository/Form/List</h3>
+                <p><?php echo $name ?></p>
+                <?php
+                echo "<p> Selected " . $yearform . "</p>";
+                ?>
+                <?php
+                echo "<p>Subject Selected " . $subject . "</p>";
+                ?>
+            </div>
+        </div>
+        <form action="myquestionslist.php" align="center">
+            <input type="search" placeholder="Search from your questions" />
+            <button type="submit" value="Submit">search</button>
+        </form>
+    </div>
+    
+    <div class="main" style="overflow-x:auto">
         <?php echo "<table border='1' align='center'>
         <tr>
           <th>No</th>

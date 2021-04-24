@@ -8,7 +8,7 @@ if ($_SESSION["session_id"]) {
     $yearform = $_GET['yearform'];
     $subject = $_GET['subject'];
 
-    $sqllistquestions = "SELECT * FROM tbl_questions WHERE user_email = '$user_email' AND form = '$yearform' AND subject_name = '$subject' ORDER BY date_created ASC";
+   $sqllistquestions = "SELECT * FROM tbl_questions WHERE user_email = '$user_email' AND form = '$yearform' AND subject_name = '$subject' ORDER BY date_created ASC";
     $stmt = $conn->prepare($sqllistquestions);
     $stmt->execute();
     // set the resulting array to associative
@@ -36,6 +36,7 @@ function limitStr($str)
     <script src="../js/depositori.js"></script>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -45,38 +46,36 @@ function limitStr($str)
         <p>Application for JPN Kedah.</p>
 
     </div>
-    <div class="topnavbar">
+    <div class="topnavbar" id="myTopnav">
         <a href="depository.php">Depository</a>
         <a href="mydepository.php">My Depository</a>
         <a href="#">My Profile</a>
-        <a href="../html/login.html" class="right">Logout</a>
+        <a href="#">Contact Us</a>
+        <a href="../html/login.html" onclick="logout()" class="right">Logout</a>
+        <a href="javascript:void(0);" class="icon" onclick="mytopnavFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
     </div>
-    <center>
-        <h3>Welcome <?php echo $name ?></h3>
-        <?php
-        echo "<h3> Selected " . $yearform . "</h3>";
-        ?>
-        <?php
-        echo "<h3>Subject Selected " . $subject . "</h3>";
-        ?>
-    </center>
-    <div class="container">
-        <center>
-            <form class="searchform" action="myquestionslist.php" ">
-            <div class=" row">
-                <div class="col-75">
-                    <input type="text" placeholder="Search.." name="search2">
-                </div>
-                <div class="col-25">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </div>
-        </center>
+    <div class="main">
+        <div class="row-single">
+            <div class="card-header" type="submit">
+                <h3>My Depository/Form/List</h3>
+                <p><?php echo $name ?></p>
+                <?php
+                echo "<p> Selected " . $yearform . "</p>";
+                ?>
+                <?php
+                echo "<p>Subject Selected " . $subject . "</p>";
+                ?>
+            </div>
+        </div>
+        <form action="myquestionslist.php" align="center">
+            <input type="search" placeholder="Search from your questions" />
+            <button type="submit" value="Submit">search</button>
         </form>
     </div>
-    <a href="newquestion.php?yearform=<?php echo $yearform ?>&subject=<?php echo $subject ?>" class="float">
-        <i class="fa fa-plus my-float"></i>
-    </a>
-    <div class="main">
+    <div class="main" style="overflow-x:auto">
+
         <?php echo "<table border='1' align='center'>
         <tr>
           <th>No</th>
@@ -105,7 +104,9 @@ function limitStr($str)
         }
         echo "</table>";
         ?>
-
+        <a href="newquestion.php?yearform=<?php echo $yearform ?>&subject=<?php echo $subject ?>" class="float">
+            <i class="fa fa-plus my-float"></i>
+        </a>
     </div>
     <div class="bottomnavbar">
         <a href="../index.html">Home</a>

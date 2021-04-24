@@ -7,7 +7,7 @@ if ($_SESSION["session_id"]) {
     $name = $_SESSION["name"];
     $yearform = $_GET['yearform'];
     $subject = $_GET['subject'];
-    
+
     if (isset($_GET['question'])) {
         $question = $_GET['question'];
         $ans_a = $_GET['answera'];
@@ -22,6 +22,7 @@ if ($_SESSION["session_id"]) {
         try {
             $conn->exec($sqlinsert);
             echo "<script> alert('Success')</script>";
+            echo "<script> window.location.replace('../php/myquestionslist.php?yearform=$yearform&subject=$subject')</script>";
         } catch (PDOException $e) {
             echo "<script> alert('Failed')</script>";
         }
@@ -42,6 +43,8 @@ if ($_SESSION["session_id"]) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="../js/depositori.js"></script>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
@@ -50,21 +53,27 @@ if ($_SESSION["session_id"]) {
         <p>Application for JPN Kedah.</p>
 
     </div>
-    <div class="topnavbar">
+    <div class="topnavbar" id="myTopnav">
         <a href="depository.php">Depository</a>
         <a href="mydepository.php">My Depository</a>
         <a href="#">My Profile</a>
-        <a href="../html/login.html" class="right">Logout</a>
+        <a href="#">Contact Us</a>
+        <a href="../html/login.html" onclick="logout()" class="right">Logout</a>
+        <a href="javascript:void(0);" class="icon" onclick="mytopnavFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
     </div>
-    <center>
-        <?php
-        echo "<h3> Welcome " . $name . "</h3>";
-        echo "<h3> Selected " . $yearform . "</h3>";
-        echo "<h3> Subject Selected " . $subject . "</h3>";
-        ?>
-    </center>
     <div class="main">
-        <div class="container">
+        <div class="row-single">
+            <div class="card-header" type="submit">
+                <h3>My Depository/Form/List/Question</h3>
+                <?php
+                echo "<h3> " . $name . "</h3>";
+                echo "<p> Form Selected " . $yearform . "</p>";
+                echo "<p> Subject Selected " . $subject . "</p>";
+                ?>
+            </div>
+
             <form name="questionsForm" action="newquestion.php" method="get">
                 <div class="row">
                     <div class="col-25">
@@ -120,12 +129,15 @@ if ($_SESSION["session_id"]) {
                         </select>
                     </div>
                 </div>
-                <input id="idform" name="yearform" type="hidden" value="<?php echo "$yearform" ?>">
-                <input id="idsubject" name="subject" type="hidden" value=<?php echo "$subject" ?>>
+                <div class="row">
+                    <input id="idform" name="yearform" type="hidden" value="<?php echo "$yearform" ?>">
+                </div>
+                <div class="row">
+                    <input id="idsubject" name="subject" type="hidden" value=<?php echo "$subject" ?>>
+                </div>
                 <div class="row">
                     <div><input type="submit" value="Submit"></div>
                 </div>
-
             </form>
         </div>
 
