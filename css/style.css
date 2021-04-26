@@ -346,13 +346,13 @@ input[type=submit]:hover {
 /* Remove extra left and right margins, due to padding */
 
 .row {
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     display: inline-block;
 }
 
 .row-single {
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     display: inline-block;
 }
@@ -437,3 +437,4 @@ td {
     padding: 8px;
     max-height: 22px;
 }
+

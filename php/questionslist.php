@@ -18,6 +18,14 @@ if ($_SESSION["session_id"]) {
     echo "<script> alert('Session not available. Please login')</script>";
     echo "<script> window.location.replace('../html/login.html')</script>";
 }
+function limitStr($str)
+{
+    if (strlen($str) > 30) {
+        return $str = substr($str, 0, 25) . '...';
+    } else {
+        return $str;
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -65,7 +73,7 @@ if ($_SESSION["session_id"]) {
             <button type="submit" value="Submit">search</button>
         </form>
     </div>
-    
+
     <div class="main" style="overflow-x:auto">
         <?php echo "<table border='1' align='center'>
         <tr>
@@ -82,12 +90,12 @@ if ($_SESSION["session_id"]) {
         foreach ($questions as $question) {
             echo "<tr>";
             echo "<td>" . $num++ . "</td>";
-            echo "<td>" . $question['question'] . "</td>";
-            echo "<td>" . $question['ans_a'] . "</td>";
-            echo "<td>" . $question['ans_b'] . "</td>";
-            echo "<td>" . $question['ans_c'] . "</td>";
-            echo "<td>" . $question['ans_d'] . "</td>";
-            echo "<td>" . $question['ans'] . "</td>";
+            echo "<td>" . limitStr($question['question']) . "</td>";
+            echo "<td>" . limitStr($question['ans_a']) . "</td>";
+            echo "<td>" . limitStr($question['ans_b']) . "</td>";
+            echo "<td>" . limitStr($question['ans_c']) . "</td>";
+            echo "<td>" . limitStr($question['ans_d']) . "</td>";
+            echo "<td>" . limitStr($question['ans']) . "</td>";
             echo "<td>" . date_format(date_create($question['date_created']), 'd/m/y H:i') . "</td>";
             echo "</tr>";
         }

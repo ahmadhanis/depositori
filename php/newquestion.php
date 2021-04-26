@@ -8,15 +8,13 @@ if ($_SESSION["session_id"]) {
     $yearform = $_GET['yearform'];
     $subject = $_GET['subject'];
 
-    if (isset($_GET['question'])) {
-        $question = $_GET['question'];
+    if (isset($_GET['submit'])) {
+        $question = addslashes($_GET['question']);
         $ans_a = $_GET['answera'];
         $ans_b = $_GET['answerb'];
         $ans_c = $_GET['answerc'];
         $ans_d = $_GET['answerd'];
         $ans = $_GET['answer'];
-
-        $subject = $_GET['subject'];
 
         $sqlinsert = "INSERT INTO tbl_questions(form,subject_name,user_email,question,ans_a,ans_b,ans_c,ans_d,ans) VALUES('$yearform','$subject','$user_email','$question','$ans_a','$ans_b','$ans_c','$ans_d','$ans')";
         try {
@@ -75,6 +73,7 @@ if ($_SESSION["session_id"]) {
             </div>
 
             <form name="questionsForm" action="newquestion.php" method="get">
+                
                 <div class="row">
                     <div class="col-25">
                         <label for="fname">Question</label>
@@ -136,7 +135,7 @@ if ($_SESSION["session_id"]) {
                     <input id="idsubject" name="subject" type="hidden" value=<?php echo "$subject" ?>>
                 </div>
                 <div class="row">
-                    <div><input type="submit" value="Submit"></div>
+                    <div><input type="submit" name="submit"  value="Submit"></div>
                 </div>
             </form>
         </div>

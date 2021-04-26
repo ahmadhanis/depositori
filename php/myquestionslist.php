@@ -8,16 +8,17 @@ if ($_SESSION["session_id"]) {
     $yearform = $_GET['yearform'];
     $subject = $_GET['subject'];
 
-   $sqllistquestions = "SELECT * FROM tbl_questions WHERE user_email = '$user_email' AND form = '$yearform' AND subject_name = '$subject' ORDER BY date_created ASC";
+   $sqllistquestions = "SELECT * FROM tbl_questions WHERE user_email = '$user_email' AND form = '$yearform' AND subject_name = '$subject' ORDER BY date_created DESC";
     $stmt = $conn->prepare($sqllistquestions);
     $stmt->execute();
     // set the resulting array to associative
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    $questions = $stmt->fetchAll();
+    $rows = $stmt->fetchAll();
 } else {
     echo "<script> alert('Session not available. Please login')</script>";
     echo "<script> window.location.replace('../html/login.html')</script>";
 }
+
 function limitStr($str)
 {
     if (strlen($str) > 30) {
@@ -89,7 +90,7 @@ function limitStr($str)
           <th>Date</th>
         </tr>";
         $num = 1;
-        foreach ($questions as $question) {
+        foreach ($rows as $question) {
             echo "<tr>";
             echo "<td>" . $num++ . "</td>";
             echo "<td>" . $question['q_id'] . "</td>";
