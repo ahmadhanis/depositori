@@ -3,21 +3,31 @@ session_start();
 include_once("dbconnect.php");
 
 if ($_SESSION["session_id"]) {
-
     $user_email = $_SESSION["email"];
     $name = $_SESSION["name"];
     $yearform = $_GET['yearform'];
     $subject = $_GET['subject'];
+    $pageno = (int)$_GET['pageno'];
+    $results_per_page = 10;
+    $page_first_result = ($pageno - 1) * $results_per_page;
+
     if (isset($_GET['button'])) {
-        $searchkey=addslashes($_GET['search']);
-        $sqllistquestions = "SELECT * FROM tbl_questions WHERE form = '$yearform' AND subject_name = '$subject' AND question LIKE '%$searchkey%' ORDER BY date_created DESC";    
-    }else{
+        $searchkey = addslashes($_GET['search']);
+        $sqllistquestions = "SELECT * FROM tbl_questions WHERE form = '$yearform' AND subject_name = '$subject' AND question LIKE '%$searchkey%' ORDER BY date_created DESC";
+    } else {
         $sqllistquestions = "SELECT * FROM tbl_questions WHERE form = '$yearform' AND subject_name = '$subject' ORDER BY date_created DESC";
-    }   
-    
+    }
     $stmt = $conn->prepare($sqllistquestions);
     $stmt->execute();
     // set the resulting array to associative
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $rows = $stmt->fetchAll();
+    $number_of_result = $stmt->rowCount();
+    $number_of_page = ceil($number_of_result / $results_per_page);
+    //concat  standard query with limiter 
+    $sqllistquestionswithlimit = $sqllistquestions . " LIMIT $page_first_result , $results_per_page";
+    $stmt = $conn->prepare($sqllistquestionswithlimit);
+    $stmt->execute();
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $rows = $stmt->fetchAll();
 } else {
@@ -100,6 +110,16 @@ function limitStr($str)
             echo "</div>";
         }
         echo "</div>";
+        //pagination 
+        echo "<div class='row-pages'>";
+        echo "<center>";
+        for ($page = 1; $page <= $number_of_page; $page++) {
+            echo '<a href = "questionslist.php?pageno=' . $page . '&yearform=' . $yearform . '&subject=' . $subject . '">&nbsp&nbsp' . $page . ' </a>';
+        }
+        echo " ( " . $pageno . " )";
+        echo "</center>";
+        echo "</div>";
+        //pagination ended 
         ?>
 
     </div>
