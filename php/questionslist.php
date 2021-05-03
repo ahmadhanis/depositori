@@ -3,17 +3,23 @@ session_start();
 include_once("dbconnect.php");
 
 if ($_SESSION["session_id"]) {
+
     $user_email = $_SESSION["email"];
     $name = $_SESSION["name"];
     $yearform = $_GET['yearform'];
     $subject = $_GET['subject'];
-
-    $sqllistquestions = "SELECT * FROM tbl_questions WHERE user_email = '$user_email' AND form = '$yearform' AND subject_name = '$subject' ORDER BY date_created ASC";
+    if (isset($_GET['button'])) {
+        $searchkey=addslashes($_GET['search']);
+        $sqllistquestions = "SELECT * FROM tbl_questions WHERE form = '$yearform' AND subject_name = '$subject' AND question LIKE '%$searchkey%' ORDER BY date_created DESC";    
+    }else{
+        $sqllistquestions = "SELECT * FROM tbl_questions WHERE form = '$yearform' AND subject_name = '$subject' ORDER BY date_created DESC";
+    }   
+    
     $stmt = $conn->prepare($sqllistquestions);
     $stmt->execute();
     // set the resulting array to associative
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    $questions = $stmt->fetchAll();
+    $rows = $stmt->fetchAll();
 } else {
     echo "<script> alert('Session not available. Please login')</script>";
     echo "<script> window.location.replace('../html/login.html')</script>";
@@ -68,38 +74,32 @@ function limitStr($str)
                 ?>
             </div>
         </div>
-        <form action="myquestionslist.php" align="center">
-            <input type="search" placeholder="Search from your questions" />
-            <button type="submit" value="Submit">search</button>
+        <form action="questionslist.php" align="center">
+            <input type="search" id="idsearch" name="search" placeholder="Search from your questions" />
+            <input id="idform" name="yearform" type="hidden" value="<?php echo "$yearform" ?>">
+            <input id="idsubject" name="subject" type="hidden" value="<?php echo "$subject" ?>">
+            <button type="submit" name="button" value="search">search</button>
         </form>
     </div>
 
     <div class="main" style="overflow-x:auto">
-        <?php echo "<table border='1' align='center'>
-        <tr>
-          <th>No</th>
-          <th>Questions</th>
-          <th>A</th>
-          <th>B</th>
-          <th>C</th>
-          <th>D</th>
-          <th>Answer</th>
-          <th>Date</th>
-        </tr>";
+        <?php
         $num = 1;
-        foreach ($questions as $question) {
-            echo "<tr>";
-            echo "<td>" . $num++ . "</td>";
-            echo "<td>" . limitStr($question['question']) . "</td>";
-            echo "<td>" . limitStr($question['ans_a']) . "</td>";
-            echo "<td>" . limitStr($question['ans_b']) . "</td>";
-            echo "<td>" . limitStr($question['ans_c']) . "</td>";
-            echo "<td>" . limitStr($question['ans_d']) . "</td>";
-            echo "<td>" . limitStr($question['ans']) . "</td>";
-            echo "<td>" . date_format(date_create($question['date_created']), 'd/m/y H:i') . "</td>";
-            echo "</tr>";
+        echo "<div class='row-question'>";
+        foreach ($rows as $question) {
+            echo "<div class='column-question'>";
+            echo " <div class='card-question'>";
+            echo "<p align='left'>" . $num++ . ". " . limitStr($question['question']) . "</p>";
+            echo "<p align='left'>A.  " . ($question['ans_a']) . "</p>";
+            echo "<p align='left'>B.  " . ($question['ans_b']) . "</p>";
+            echo "<p align='left'>C.  " . ($question['ans_c']) . "</p>";
+            echo "<p align='left'>D.  " . ($question['ans_d']) . "</p>";
+            echo "<p align='left'>Ans:  " . ($question['ans']) . "</p>";
+            echo "<p align='right'>" . date_format(date_create($question['date_created']), 'd/m/y H:i A') . "</p>";
+            echo "</div>";
+            echo "</div>";
         }
-        echo "</table>";
+        echo "</div>";
         ?>
 
     </div>

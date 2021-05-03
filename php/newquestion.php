@@ -15,14 +15,17 @@ if ($_SESSION["session_id"]) {
         $ans_c = $_GET['answerc'];
         $ans_d = $_GET['answerd'];
         $ans = $_GET['answer'];
-
-        $sqlinsert = "INSERT INTO tbl_questions(form,subject_name,user_email,question,ans_a,ans_b,ans_c,ans_d,ans) VALUES('$yearform','$subject','$user_email','$question','$ans_a','$ans_b','$ans_c','$ans_d','$ans')";
-        try {
-            $conn->exec($sqlinsert);
-            echo "<script> alert('Success')</script>";
-            echo "<script> window.location.replace('../php/myquestionslist.php?yearform=$yearform&subject=$subject')</script>";
-        } catch (PDOException $e) {
-            echo "<script> alert('Failed')</script>";
+        if ($ans === "noselection") {
+            echo "<script> alert('Please select answer')</script>";
+        } else {
+            $sqlinsert = "INSERT INTO tbl_questions(form,subject_name,user_email,question,ans_a,ans_b,ans_c,ans_d,ans) VALUES('$yearform','$subject','$user_email','$question','$ans_a','$ans_b','$ans_c','$ans_d','$ans')";
+            try {
+                $conn->exec($sqlinsert);
+                echo "<script> alert('Success')</script>";
+                echo "<script> window.location.replace('../php/myquestionslist.php?yearform=$yearform&subject=$subject&pageno=1')</script>";
+            } catch (PDOException $e) {
+                echo "<script> alert('Failed')</script>";
+            }
         }
     }
 } else {
@@ -72,14 +75,14 @@ if ($_SESSION["session_id"]) {
                 ?>
             </div>
 
-            <form name="questionsForm" action="newquestion.php" method="get">
-                
+            <form name="questionForm" action="newquestion.php" onsubmit="return validateNewQForm()" method="get">
+
                 <div class="row">
                     <div class="col-25">
                         <label for="fname">Question</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="idquestion" name="question" placeholder="Enter your question here..">
+                        <textarea type="text" cols="110%" rows="5" id="idquestion" name="question" resize="none" placeholder="Your question here" required></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -87,7 +90,7 @@ if ($_SESSION["session_id"]) {
                         <label for="lnamea">A.</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="idanswera" name="answera" placeholder="Answer a">
+                        <input type="text" id="idanswera" name="answera" placeholder="Answer a" required>
                     </div>
                 </div>
                 <div class="row">
@@ -95,7 +98,7 @@ if ($_SESSION["session_id"]) {
                         <label for="lnameb">B.</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="idanswerb" name="answerb" placeholder="Answer b">
+                        <input type="text" id="idanswerb" name="answerb" placeholder="Answer b" required>
                     </div>
                 </div>
                 <div class="row">
@@ -103,7 +106,7 @@ if ($_SESSION["session_id"]) {
                         <label for="lnamec">C.</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="idanswerc" name="answerc" placeholder="Answer b">
+                        <input type="text" id="idanswerc" name="answerc" placeholder="Answer b" required>
                     </div>
                 </div>
                 <div class="row">
@@ -111,7 +114,7 @@ if ($_SESSION["session_id"]) {
                         <label for="lnamed">D.</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="idanswerd" name="answerd" placeholder="Answer d">
+                        <input type="text" id="idanswerd" name="answerd" placeholder="Answer d" required>
                     </div>
                 </div>
                 <div class="row">
@@ -135,7 +138,7 @@ if ($_SESSION["session_id"]) {
                     <input id="idsubject" name="subject" type="hidden" value=<?php echo "$subject" ?>>
                 </div>
                 <div class="row">
-                    <div><input type="submit" name="submit"  value="Submit"></div>
+                    <div><input type="submit" name="submit" value="Submit"></div>
                 </div>
             </form>
         </div>

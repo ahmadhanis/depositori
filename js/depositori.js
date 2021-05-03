@@ -12,14 +12,25 @@ function validateLoginForm() {
     }
     setCookies(10);
 }
+
+function validateNewQForm() {
+    var answer = document.forms["questionForm"]["idanswer"].value;
+    console.log(answer);
+    if (answer === "noselection") {
+        alert("Please select your answer");
+        return false;
+    }else{
+        return true;
+    }
+}
 function mytopnavFunction() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnavbar") {
-      x.className += " responsive";
+        x.className += " responsive";
     } else {
-      x.className = "topnavbar";
+        x.className = "topnavbar";
     }
-  }
+}
 
 function validateRegForm() {
     var email = document.forms["registerForm"]["idemail"].value;
@@ -95,3 +106,13 @@ function logout() {
     window.location.replace('../html/login.html')
 }
 
+function deleteDialog() {
+    var txt;
+    var r = confirm("Delete this question?");
+    if (r == true) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
