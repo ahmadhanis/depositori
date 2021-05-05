@@ -114,5 +114,19 @@ function deleteDialog() {
     } else {
         return false;
     }
+}
 
+function updateDialog() {
+    var answer = document.forms["editquestionForm"]["idanswer"].value;
+    console.log(answer);
+    if (answer === "noselection") {
+        alert("Please select your answer");
+        return false;
+    }
+    var r = confirm("Update this question?");
+    if (r == true) {
+        return true;
+    } else {
+        return false;
+    }
 }

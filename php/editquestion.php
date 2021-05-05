@@ -8,29 +8,32 @@ if ($_SESSION["session_id"]) {
     $yearform = $_GET['yearform'];
     $subject = $_GET['subject'];
     $qid = $_GET['qid'];
-    $sqllistquestion = "SELECT * FROM tbl_questions WHERE user_email = '$user_email' AND q_id = '$qid'";
+    $pageno = $_GET['pageno'];
+    $sqllistquestion = "SELECT * FROM tbl_questions_mcq WHERE user_email = '$user_email' AND q_id = '$qid'";
     $stmt = $conn->prepare($sqllistquestion);
     $stmt->execute();
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $rows = $stmt->fetchAll();
 
     if (isset($_GET['submit'])) {
-        $question = addslashes($_GET['question']);
-        $ans_a = $_GET['answera'];
-        $ans_b = $_GET['answerb'];
-        $ans_c = $_GET['answerc'];
-        $ans_d = $_GET['answerd'];
-        $ans = $_GET['answer'];
-        if ($ans === "noselection") {
-            echo "<script> alert('Please select answer')</script>";
-        } else {
-            $sqlinsert = "INSERT INTO tbl_questions(form,subject_name,user_email,question,ans_a,ans_b,ans_c,ans_d,ans) VALUES('$yearform','$subject','$user_email','$question','$ans_a','$ans_b','$ans_c','$ans_d','$ans')";
-            try {
-                $conn->exec($sqlinsert);
-                echo "<script> alert('Success')</script>";
-                echo "<script> window.location.replace('../php/myquestionslist.php?yearform=$yearform&subject=$subject&pageno=1')</script>";
-            } catch (PDOException $e) {
-                echo "<script> alert('Failed')</script>";
+        if ($_GET['submit'] === "Update") {
+            $question = addslashes($_GET['question']);
+            $ans_a = $_GET['answera'];
+            $ans_b = $_GET['answerb'];
+            $ans_c = $_GET['answerc'];
+            $ans_d = $_GET['answerd'];
+            $ans = $_GET['answer'];
+            if ($ans === "noselection") {
+                echo "<script> alert('Please select answer')</script>";
+            } else {
+                 $sqlupdate = "UPDATE tbl_questions_mcq SET question='$question',ans_a='$ans_a',ans_b='$ans_b',ans_c='$ans_c',ans_d='$ans_d',ans='$ans' WHERE q_id = '$qid'";
+                try {
+                    $conn->exec($sqlupdate);
+                    echo "<script> alert('Update Success')</script>";
+                    echo "<script> window.location.replace('../php/myquestionslist.php?yearform=$yearform&subject=$subject&pageno=$pageno')</script>";
+                } catch (PDOException $e) {
+                    echo "<script> alert('Failed')</script>";
+                }
             }
         }
     }
@@ -81,14 +84,16 @@ if ($_SESSION["session_id"]) {
                 ?>
             </div>
 
-            <form name="questionForm" action="newquestion.php" onsubmit="return validateNewQForm()" method="get">
+            <form name="editquestionForm" action="editquestion.php" onsubmit="return updateDialog()" method="get">
 
                 <div class="row">
                     <div class="col-25">
                         <label for="fname">Question</label>
                     </div>
                     <div class="col-75">
-                        <textarea type="text" cols="110%" rows="5" id="idquestion" name="question" resize="none" placeholder="Your question here" required><?php foreach ($rows as $question){echo $question['question'];} ?></textarea>
+                        <textarea type="text" cols="110%" rows="5" id="idquestion" name="question" resize="none" placeholder="Your question here" required><?php foreach ($rows as $question) {
+                                                                                                                                                                echo $question['question'];
+                                                                                                                                                            } ?></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -96,7 +101,9 @@ if ($_SESSION["session_id"]) {
                         <label for="lnamea">A.</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="idanswera" name="answera" placeholder="Answer a" value= <?php foreach ($rows as $question){echo $question['ans_a'];} ?> required>
+                        <input type="text" id="idanswera" name="answera" placeholder="Answer a" value="<?php foreach ($rows as $question) {
+                                                                                                            echo $question['ans_a'];
+                                                                                                        } ?>" required>
                     </div>
                 </div>
                 <div class="row">
@@ -104,7 +111,9 @@ if ($_SESSION["session_id"]) {
                         <label for="lnameb">B.</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="idanswerb" name="answerb" placeholder="Answer b" value= <?php foreach ($rows as $question){echo $question['ans_b'];} ?> required>
+                        <input type="text" id="idanswerb" name="answerb" placeholder="Answer b" value="<?php foreach ($rows as $question) {
+                                                                                                            echo $question['ans_b'];
+                                                                                                        } ?> " required>
                     </div>
                 </div>
                 <div class="row">
@@ -112,7 +121,9 @@ if ($_SESSION["session_id"]) {
                         <label for="lnamec">C.</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="idanswerc" name="answerc" placeholder="Answer c" value= <?php foreach ($rows as $question){echo $question['ans_c'];} ?> required>
+                        <input type="text" id="idanswerc" name="answerc" placeholder="Answer c" value="<?php foreach ($rows as $question) {
+                                                                                                            echo $question['ans_c'];
+                                                                                                        } ?>" required>
                     </div>
                 </div>
                 <div class="row">
@@ -120,7 +131,9 @@ if ($_SESSION["session_id"]) {
                         <label for="lnamed">D.</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="idanswerd" name="answerd" placeholder="Answer d" value= <?php foreach ($rows as $question){echo $question['ans_d'];} ?> required>
+                        <input type="text" id="idanswerd" name="answerd" placeholder="Answer d" value=" <?php foreach ($rows as $question) {
+                                                                                                            echo $question['ans_d'];
+                                                                                                        } ?>" required>
                     </div>
                 </div>
                 <div class="row">
@@ -142,6 +155,12 @@ if ($_SESSION["session_id"]) {
                 </div>
                 <div class="row">
                     <input id="idsubject" name="subject" type="hidden" value=<?php echo "$subject" ?>>
+                </div>
+                <div class="row">
+                    <input id="qid" name="qid" type="hidden" value=<?php echo "$qid" ?>>
+                </div>
+                <div class="row">
+                    <input id="idpageno" name="pageno" type="hidden" value=<?php echo "$pageno" ?>>
                 </div>
                 <div class="row">
                     <div><input type="submit" name="submit" value="Update"></div>

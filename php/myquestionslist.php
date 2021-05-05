@@ -14,21 +14,21 @@ if ($_SESSION["session_id"]) {
     if (isset($_GET['button'])) {
         if ($_GET['button'] === 'search') {
             $searchkey = addslashes($_GET['search']);
-            $sqllistquestions = "SELECT * FROM tbl_questions WHERE user_email = '$user_email' AND form = '$yearform' AND subject_name = '$subject' AND question LIKE '%$searchkey%' ORDER BY date_created DESC";
+            $sqllistquestions = "SELECT * FROM tbl_questions_mcq WHERE user_email = '$user_email' AND form = '$yearform' AND subject_name = '$subject' AND question LIKE '%$searchkey%' ORDER BY date_created DESC";
         }
         if ($_GET['button'] === 'delete') {
             $qid = $_GET['qid'];
-            $sqldelete = "DELETE FROM tbl_questions WHERE q_id='$qid' AND user_email = '$user_email'";
+            $sqldelete = "DELETE FROM tbl_questions_mcq WHERE q_id='$qid' AND user_email = '$user_email'";
             $stmt = $conn->prepare($sqldelete);
             if ($stmt->execute()) {
                 echo "<script> alert('Delete Success')</script>";
             } else {
                 echo "<script> alert('Delete Failed')</script>";
             }
-            $sqllistquestions = "SELECT * FROM tbl_questions WHERE user_email = '$user_email' AND form = '$yearform' AND subject_name = '$subject' ORDER BY date_created DESC";
+            $sqllistquestions = "SELECT * FROM tbl_questions_mcq WHERE user_email = '$user_email' AND form = '$yearform' AND subject_name = '$subject' ORDER BY date_created DESC";
         }
     } else {
-        $sqllistquestions = "SELECT * FROM tbl_questions WHERE user_email = '$user_email' AND form = '$yearform' AND subject_name = '$subject' ORDER BY date_created DESC";
+        $sqllistquestions = "SELECT * FROM tbl_questions_mcq WHERE user_email = '$user_email' AND form = '$yearform' AND subject_name = '$subject' ORDER BY date_created DESC";
     }
     $stmt = $conn->prepare($sqllistquestions);
     $stmt->execute();
@@ -112,8 +112,8 @@ function limitStr($str)
         $qid = $question['q_id'];
         echo "<div class='column-question'>";
         echo " <div class='card-question'>";
-        echo "<p align='right'><a href='myquestionslist.php?button=delete&yearform=$yearform&subject=$subject&qid=$qid&pageno=1' 
-        class='fa fa-remove' onclick='return deleteDialog()'></a>&nbsp&nbsp<a href='editquestion.php?yearform=$yearform&subject=$subject&qid=$qid&pageno=1' 
+        echo "<p align='right'><a href='myquestionslist.php?button=delete&yearform=$yearform&subject=$subject&qid=$qid&pageno=$pageno' 
+        class='fa fa-remove' onclick='return deleteDialog()'></a>&nbsp&nbsp<a href='editquestion.php?yearform=$yearform&subject=$subject&qid=$qid&pageno=$pageno' 
         class='fa fa-edit''></a></p>";
         echo "<p align='left'>" . $num++ . ". " . ($question['question']) . "</p>";
         echo "<p align='left'>A.  " . ($question['ans_a']) . "</p>";

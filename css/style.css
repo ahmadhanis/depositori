@@ -176,7 +176,7 @@ textarea {
     .col-25, .col-75, input[type=submit] {
         width: 100%;
         margin-top: 0;
-        align-items: left;
+        
     }
     .header h1 {
         font-size: 8vw;
@@ -359,11 +359,13 @@ input[type=submit]:hover {
 .col-25 {
     float: left;
     width: 30%;
+    text-align: left;
 }
 
 .col-75 {
     float: left;
     width: 70%;
+    text-align: left;
 }
 
 /* Clear floats after the columns */
@@ -401,6 +403,7 @@ input[type=submit]:hover {
     padding: 5px;
     text-align: center;
     display: inline-block;
+    align-content: center;
 }
 
 .row-single {
@@ -443,6 +446,7 @@ input[type=checkbox] {
     /* Opera */
     transform: scale(2);
     padding: 10px;
+    color: #1a977e;
 }
 
 /* Might want to wrap a span around your checkbox text */
@@ -451,6 +455,7 @@ input[type=checkbox] {
     /* Checkbox text */
     font-size: 110%;
     display: inline;
+    background-color: #1a977e;
 }
 
 .float {

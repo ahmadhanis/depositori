@@ -1,9 +1,11 @@
 <?php
 session_start();
+include_once("dbconnect.php");
 
 if ($_SESSION["session_id"]) {
     $username = $_SESSION["email"];
     $name = $_SESSION["name"];
+    
 } else {
     echo "<script> alert('Session not available. Please login')</script>";
     echo "<script> window.location.replace('../html/login.html')</script>";

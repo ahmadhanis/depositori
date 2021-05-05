@@ -18,7 +18,7 @@ if ($_SESSION["session_id"]) {
         if ($ans === "noselection") {
             echo "<script> alert('Please select answer')</script>";
         } else {
-            $sqlinsert = "INSERT INTO tbl_questions(form,subject_name,user_email,question,ans_a,ans_b,ans_c,ans_d,ans) VALUES('$yearform','$subject','$user_email','$question','$ans_a','$ans_b','$ans_c','$ans_d','$ans')";
+            $sqlinsert = "INSERT INTO tbl_questions_mcq(form,subject_name,user_email,question,ans_a,ans_b,ans_c,ans_d,ans) VALUES('$yearform','$subject','$user_email','$question','$ans_a','$ans_b','$ans_c','$ans_d','$ans')";
             try {
                 $conn->exec($sqlinsert);
                 echo "<script> alert('Success')</script>";

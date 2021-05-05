@@ -13,9 +13,9 @@ if ($_SESSION["session_id"]) {
 
     if (isset($_GET['button'])) {
         $searchkey = addslashes($_GET['search']);
-        $sqllistquestions = "SELECT * FROM tbl_questions WHERE form = '$yearform' AND subject_name = '$subject' AND question LIKE '%$searchkey%' ORDER BY date_created DESC";
+        $sqllistquestions = "SELECT * FROM tbl_questions_mcq WHERE form = '$yearform' AND subject_name = '$subject' AND question LIKE '%$searchkey%' ORDER BY date_created DESC";
     } else {
-        $sqllistquestions = "SELECT * FROM tbl_questions WHERE form = '$yearform' AND subject_name = '$subject' ORDER BY date_created DESC";
+        $sqllistquestions = "SELECT * FROM tbl_questions_mcq WHERE form = '$yearform' AND subject_name = '$subject' ORDER BY date_created DESC";
     }
     $stmt = $conn->prepare($sqllistquestions);
     $stmt->execute();
@@ -88,6 +88,7 @@ function limitStr($str)
             <input type="search" id="idsearch" name="search" placeholder="Search from your questions" />
             <input id="idform" name="yearform" type="hidden" value="<?php echo "$yearform" ?>">
             <input id="idsubject" name="subject" type="hidden" value="<?php echo "$subject" ?>">
+            <input id="idpageno" name="pageno" type="hidden" value="<?php echo "$pageno" ?>">
             <button type="submit" name="button" value="search">search</button>
         </form>
     </div>
@@ -99,7 +100,7 @@ function limitStr($str)
         foreach ($rows as $question) {
             echo "<div class='column-question'>";
             echo " <div class='card-question'>";
-            echo "<p align='left'>" . $num++ . ". " . limitStr($question['question']) . "</p>";
+            echo "<p align='left'>" . $num++ . ". " . ($question['question']) . "</p>";
             echo "<p align='left'>A.  " . ($question['ans_a']) . "</p>";
             echo "<p align='left'>B.  " . ($question['ans_b']) . "</p>";
             echo "<p align='left'>C.  " . ($question['ans_c']) . "</p>";
