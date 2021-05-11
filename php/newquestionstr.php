@@ -10,20 +10,16 @@ if ($_SESSION["session_id"]) {
 
     if (isset($_GET['submit'])) {
         $question = addslashes($_GET['question']);
-        $ans_a = $_GET['answera'];
-        $ans_b = $_GET['answerb'];
-        $ans_c = $_GET['answerc'];
-        $ans_d = $_GET['answerd'];
         $ans = $_GET['answer'];
         $topic = $_GET['topic'];
         if ($ans === "noselection" || $topic == "noselection") {
             echo "<script> alert('Please select answer')</script>";
         } else {
-            $sqlinsert = "INSERT INTO tbl_questions_mcq(form,subject_name,user_email,question,ans_a,ans_b,ans_c,ans_d,ans,topic) VALUES('$yearform','$subject','$user_email','$question','$ans_a','$ans_b','$ans_c','$ans_d','$ans','$topic')";
+            $sqlinsert = "INSERT INTO tbl_questions_str(form,subject_name,user_email,question,ans,topic) VALUES('$yearform','$subject','$user_email','$question','$ans','$topic')";
             try {
                 $conn->exec($sqlinsert);
                 echo "<script> alert('Success')</script>";
-                echo "<script> window.location.replace('../php/myquestionslist.php?yearform=$yearform&subject=$subject&pageno=1')</script>";
+                echo "<script> window.location.replace('../php/myquestionsliststr.php?yearform=$yearform&subject=$subject&pageno=1&topic=$topic')</script>";
             } catch (PDOException $e) {
                 echo "<script> alert('Failed')</script>";
             }
@@ -72,11 +68,11 @@ if ($_SESSION["session_id"]) {
                 <?php
                 echo "<h3> " . $name . "</h3>";
                 echo "<p> Form Selected " . $yearform . "</p>";
-                echo "<p> Subject Selected " . $subject . "</p>";
+                echo "<p> Subject Selected " . $subject . " - Structured Question</p>";
                 ?>
             </div>
 
-            <form name="questionForm" action="newquestion.php" onsubmit="return validateNewQForm()" method="get">
+            <form name="questionForm" action="newquestionstr.php" onsubmit="return validateNewQForm()" method="get">
                 <div class="row">
                     <div class="col-25">
                         <label for="topics">Topic</label>
@@ -107,48 +103,10 @@ if ($_SESSION["session_id"]) {
                 </div>
                 <div class="row">
                     <div class="col-25">
-                        <label for="lnamea">A.</label>
+                        <label for="fname">Answer</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="idanswera" name="answera" placeholder="Answer a" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-25">
-                        <label for="lnameb">B.</label>
-                    </div>
-                    <div class="col-75">
-                        <input type="text" id="idanswerb" name="answerb" placeholder="Answer b" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-25">
-                        <label for="lnamec">C.</label>
-                    </div>
-                    <div class="col-75">
-                        <input type="text" id="idanswerc" name="answerc" placeholder="Answer b" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-25">
-                        <label for="lnamed">D.</label>
-                    </div>
-                    <div class="col-75">
-                        <input type="text" id="idanswerd" name="answerd" placeholder="Answer d" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-25">
-                        <label for="answer">Answer</label>
-                    </div>
-                    <div class="col-75">
-                        <select name="answer" id="idanswer" required>
-                            <option value="">Please select your answer</option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                        </select>
+                        <textarea type="text" cols="110%" rows="5" id="idanswer" name="answer" resize="none" placeholder="Your answer here" required></textarea>
                     </div>
                 </div>
                 <input id="idform" name="yearform" type="hidden" value="<?php echo "$yearform" ?>">

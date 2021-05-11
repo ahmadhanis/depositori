@@ -20,7 +20,13 @@
 	<div class="main">
 		<center><img src="../images/jpnlogo.png"></center>
 		<div class="container">
-			<form name="registerForm" action="../php/register.php" onsubmit="return validateRegForm()" method="post">
+			<form name="registerForm" action="../php/register.php" onsubmit="return validateRegForm()" method="post" enctype="multipart/form-data">
+				<div class="row-single">
+					<div class="row-single">
+						<img class="imgselection" src="../images/profile/profile.png" height="100" width="100"><br>
+						<input type="file" onchange="previewFile()" name="fileToUpload" id="fileToUpload"><br>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-25">
 						<label for="fname">Name</label>
@@ -77,7 +83,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div><input type="submit" value="Register"></div>
+					<div><input type="submit"></div>
 				</div>
 
 			</form>

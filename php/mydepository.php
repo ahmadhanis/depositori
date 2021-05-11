@@ -5,7 +5,7 @@ if ($_SESSION["session_id"]) {
     $name = $_SESSION["name"];
 } else {
     echo "<script> alert('Session not available. Please login')</script>";
-    echo "<script> window.location.replace('../html/login.html')</script>";
+    echo "<script> window.location.replace('../php/login.php')</script>";
 }
 
 ?>
@@ -31,9 +31,9 @@ if ($_SESSION["session_id"]) {
     <div class="topnavbar" id="myTopnav">
         <a href="depository.php">Depository</a>
         <a href="mydepository.php">My Depository</a>
-        <a href="#">My Profile</a>
+        <a href="profile.php">My Profile</a>
         <a href="#">Contact Us</a>
-        <a href="../html/login.html" onclick="logout()" class="right">Logout</a>
+        <a href="../php/login.php" onclick="logout()" class="right">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="mytopnavFunction()">
             <i class="fa fa-bars"></i>
         </a>
@@ -69,9 +69,7 @@ if ($_SESSION["session_id"]) {
                     </div>
                 </a>
             </div>
-        </div>
 
-        <div class="row">
 
             <div class="column-card">
                 <a href="mysubjectslist.php?yearform=Form 3" style="text-decoration:none; color:#000000">
@@ -94,8 +92,8 @@ if ($_SESSION["session_id"]) {
                     </div>
                 </a>
             </div>
-        </div>
-        <div class="row">
+
+
 
             <div class="column-card">
                 <a href="mysubjectslist.php?yearform=Form 5" style="text-decoration:none; color:#000000">
@@ -115,15 +113,15 @@ if ($_SESSION["session_id"]) {
                     </div>
                 </a>
             </div>
+
+
         </div>
 
-    </div>
-
-    <div class="bottomnavbar">
-        <a href="../index.html">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-    </div>
+        <div class="bottomnavbar">
+            <a href="../index.html">Home</a>
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+        </div>
 </body>
 
 </html>

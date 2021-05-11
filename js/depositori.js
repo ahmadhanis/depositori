@@ -19,7 +19,7 @@ function validateNewQForm() {
     if (answer === "noselection") {
         alert("Please select your answer");
         return false;
-    }else{
+    } else {
         return true;
     }
 }
@@ -45,7 +45,14 @@ function validateRegForm() {
         return false;
     }
 }
-
+function validateUpdForm() {
+    var r = confirm("Update your profile?");
+    if (r == true) {
+        return true;
+    } else {
+        return false;
+    }
+}
 function setCookies(exdays) {
     var email = document.forms["loginForm"]["idemail"].value;
     var pass = document.forms["loginForm"]["idpass"].value;
@@ -97,17 +104,17 @@ function loadCookies() {
 }
 
 function logout() {
-    alert('Log out success')
-    console.log("logout");
-    sessionStorage.clear();
-    unset($_SESSION);
-    session_unset();
-    session_destroy();
-    window.location.replace('../html/login.html')
+    var r = confirm("Logout?");
+    if (r == true) {W
+        alert('Log out success');
+        //Wwindow.location.replace('../php/login.php?status=logout');
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function deleteDialog() {
-    var txt;
     var r = confirm("Delete this question?");
     if (r == true) {
         return true;
@@ -129,4 +136,22 @@ function updateDialog() {
     } else {
         return false;
     }
+}
+
+function previewFile() {
+    const preview = document.querySelector('.imgselection');
+    const file = document.querySelector('input[type=file]').files[0];
+    const reader = new FileReader();
+    reader.addEventListener("load", function () {
+        // convert image file to base64 string
+        preview.src = reader.result;
+    }, false);
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+}
+
+function goBack() {
+    window.history.back();
 }

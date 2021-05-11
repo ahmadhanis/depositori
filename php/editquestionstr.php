@@ -9,7 +9,7 @@ if ($_SESSION["session_id"]) {
     $subject = $_GET['subject'];
     $qid = $_GET['qid'];
     $pageno = $_GET['pageno'];
-    $sqllistquestion = "SELECT * FROM tbl_questions_mcq WHERE user_email = '$user_email' AND q_id = '$qid'";
+    $sqllistquestion = "SELECT * FROM tbl_questions_str WHERE user_email = '$user_email' AND q_id = '$qid'";
     $stmt = $conn->prepare($sqllistquestion);
     $stmt->execute();
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -18,20 +18,16 @@ if ($_SESSION["session_id"]) {
     if (isset($_GET['submit'])) {
         if ($_GET['submit'] === "Update") {
             $question = addslashes($_GET['question']);
-            $ans_a = $_GET['answera'];
-            $ans_b = $_GET['answerb'];
-            $ans_c = $_GET['answerc'];
-            $ans_d = $_GET['answerd'];
             $ans = $_GET['answer'];
             $topic = $_GET['topic'];
             if ($ans === "noselection") {
                 echo "<script> alert('Please select answer')</script>";
             } else {
-                $sqlupdate = "UPDATE tbl_questions_mcq SET question='$question',ans_a='$ans_a',ans_b='$ans_b',ans_c='$ans_c',ans_d='$ans_d',ans='$ans', topic='$topic' WHERE q_id = '$qid'";
+                $sqlupdate = "UPDATE tbl_questions_str SET question='$question',ans='$ans', topic='$topic' WHERE q_id = '$qid'";
                 try {
                     $conn->exec($sqlupdate);
                     echo "<script> alert('Update Success')</script>";
-                    echo "<script> window.location.replace('../php/myquestionslist.php?yearform=$yearform&subject=$subject&pageno=$pageno')</script>";
+                    echo "<script> window.location.replace('../php/myquestionsliststr.php?yearform=$yearform&subject=$subject&pageno=$pageno&topic=$topic')</script>";
                 } catch (PDOException $e) {
                     echo "<script> alert('Failed')</script>";
                 }
@@ -76,7 +72,7 @@ if ($_SESSION["session_id"]) {
     </div>
     <div class="main">
         <div class="row-single">
-            <div class="card-header">
+            <div class="card-header" type="submit">
                 <h3>My Depository/Form/List/Edit Question</h3>
                 <?php
                 echo "<h3> " . $name . "</h3>";
@@ -85,11 +81,10 @@ if ($_SESSION["session_id"]) {
                 ?>
             </div>
         </div>
-
-        <form name="editquestionForm" action="editquestion.php" onsubmit="return updateDialog()" method="get">
+        <form name="editquestionForm" action="editquestionstr.php" onsubmit="return updateDialog()" method="get">
             <div class="row">
                 <div class="col-25">
-                    <label for="Topic">Topic</label>
+                    <label for="answer">Answer</label>
                 </div>
                 <div class="col-75">
                     <?php
@@ -126,79 +121,28 @@ if ($_SESSION["session_id"]) {
             </div>
             <div class="row">
                 <div class="col-25">
-                    <label for="lnamea">A.</label>
+                    <label for="fname">Answer</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="idanswera" name="answera" placeholder="Answer a" value="<?php foreach ($rows as $question) {
-                                                                                                        echo $question['ans_a'];
-                                                                                                    } ?>" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="lnameb">B.</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="idanswerb" name="answerb" placeholder="Answer b" value="<?php foreach ($rows as $question) {
-                                                                                                        echo $question['ans_b'];
-                                                                                                    } ?> " required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="lnamec">C.</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="idanswerc" name="answerc" placeholder="Answer c" value="<?php foreach ($rows as $question) {
-                                                                                                        echo $question['ans_c'];
-                                                                                                    } ?>" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="lnamed">D.</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="idanswerd" name="answerd" placeholder="Answer d" value=" <?php foreach ($rows as $question) {
-                                                                                                        echo $question['ans_d'];
-                                                                                                    } ?>" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="answer">Answer</label>
-                </div>
-                <div class="col-75">
-                    <?php
-                    foreach ($rows as $question) {
-                        $ans = $question['ans'];
-                    }
-                    echo "<select name='answer' id='idanswer'>
-                            <option value='noselection'>Please select your answer</option>
-                            <option value='A'" . ($ans == 'A' ? ' selected' : '') . ">A</option>
-                            <option value='B'" . ($ans == 'B' ? ' selected' : '') . ">B</option>
-                            <option value='C'" . ($ans == 'C' ? ' selected' : '') . ">C</option>
-                            <option value='D'" . ($ans == 'D' ? ' selected' : '') . ">D</option>
-                        </select>"
-                    ?>
-
+                    <textarea type="text" cols="110%" rows="5" id="idanswer" name="answer" resize="none" placeholder="Your answer here" required><?php foreach ($rows as $question) {
+                                                                                                                                                        echo $question['ans'];
+                                                                                                                                                    } ?></textarea>
                 </div>
             </div>
             <input id="idform" name="yearform" type="hidden" value="<?php echo "$yearform" ?>">
             <input id="idsubject" name="subject" type="hidden" value=<?php echo "$subject" ?>>
             <input id="qid" name="qid" type="hidden" value=<?php echo "$qid" ?>>
             <input id="idpageno" name="pageno" type="hidden" value=<?php echo "$pageno" ?>>
-            <div class="row">
-                <input type="submit" name="submit" value="Update">
-            </div>
+            <input type="submit" name="submit" value="Update">
         </form>
-
     </div>
+
     <div class="bottomnavbar">
         <a href="../index.html">Home</a>
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
     </div>
+
 </body>
 
 </html>

@@ -6,7 +6,7 @@ if ($_SESSION["session_id"]) {
     $yearform = $_GET['yearform'];
 } else {
     echo "<script> alert('Session not available. Please login')</script>";
-    echo "<script> window.location.replace('../html/login.html')</script>";
+    echo "<script> window.location.replace('../php/login.php')</script>";
 }
 
 ?>
@@ -32,9 +32,9 @@ if ($_SESSION["session_id"]) {
     <div class="topnavbar" id="myTopnav">
         <a href="depository.php">Depository</a>
         <a href="mydepository.php">My Depository</a>
-        <a href="#">My Profile</a>
+        <a href="profile.php">My Profile</a>
         <a href="#">Contact Us</a>
-        <a href="../html/login.html" onclick="logout()" class="right">Logout</a>
+        <a href="../php/login.php" onclick="logout()" class="right">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="mytopnavFunction()">
             <i class="fa fa-bars"></i>
         </a>
@@ -52,65 +52,68 @@ if ($_SESSION["session_id"]) {
             </div>
         </div>
         <div class="row">
-
             <div class="column-card">
-                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Mathematic&pageno=1" style="text-decoration:none; color:#000000">
-                    <div class="card" type="submit">
-                        <h3>Mathematic</h3>
-                        <p>10 Subjects</p>
-                        <p>10 new questions today</p>
-                    </div>
-                </a>
+                <div class="card" type="submit">
+                    <h3>Mathematic</h3>
+                    <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Mathematic&pageno=1&topic=all" style="text-decoration:none; color:#000000">
+                        <p>MCQ Questions</p>
+                    </a>
+                    <a href="myquestionsliststr.php?yearform=<?php echo $yearform ?>&subject=Mathematic&pageno=1&topic=all" style="text-decoration:none; color:#000000">
+                        <p>Structured Questions</p>
+                    </a>
+                </div>
             </div>
 
             <div class="column-card">
-                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=English&pageno=1" style="text-decoration:none; color:#000000">
-                    <div class="card">
-                        <h3>English</h3>
-                        <p>10 Subjects</p>
-                        <p>10 new questions today</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="row">
-
-            <div class="column-card">
-                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Science&pageno=1" style="text-decoration:none; color:#000000">
-                    <div class="card">
-                        <h3>Science</h3>
-                        <p>10 Subjects</p>
-                        <p>10 new questions today</p>
-
-                    </div>
-                </a>
+                <div class="card" type="submit">
+                    <h3>English</h3>
+                    <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=English&pageno=1&topic=all" style="text-decoration:none; color:#000000">
+                        <p>MCQ Questions</p>
+                    </a>
+                    <a href="myquestionsliststr.php?yearform=<?php echo $yearform ?>&subject=English&pageno=1&topic=all" style="text-decoration:none; color:#000000">
+                        <p>Structured Questions</p>
+                    </a>
+                </div>
             </div>
 
             <div class="column-card">
-                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=History&pageno=1" style="text-decoration:none; color:#000000">
-                    <div class="card">
-                        <h3>History</h3>
-                        <p>10 Subjects</p>
-                        <p>10 new questions today</p>
-
-                    </div>
-                </a>
+                <div class="card" type="submit">
+                    <h3>Science</h3>
+                    <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Science&pageno=1&topic=all" style="text-decoration:none; color:#000000">
+                        <p>MCQ Questions</p>
+                    </a>
+                    <a href="myquestionsliststr.php?yearform=<?php echo $yearform ?>&subject=Science&pageno=1&topic=all" style="text-decoration:none; color:#000000">
+                        <p>Structured Questions</p>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="row">
 
             <div class="column-card">
-                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Bahasa Melayu&pageno=1" style="text-decoration:none; color:#000000">
-                    <div class="card">
-                        <h3>Bahasa Melayu</h3>
-                        <p>10 Subjects</p>
-                        <p>10 new questions today</p>
-                    </div>
-                </a>
+                <div class="card" type="submit">
+                    <h3>History</h3>
+                    <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=History&pageno=1&topic=all" style="text-decoration:none; color:#000000">
+                        <p>MCQ Questions</p>
+                    </a>
+                    <a href="myquestionsliststr.php?yearform=<?php echo $yearform ?>&subject=History&pageno=1&topic=all" style="text-decoration:none; color:#000000">
+                        <p>Structured Questions</p>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="column-card">
+                <div class="card" type="submit">
+                    <h3>Bahasa Melayu</h3>
+                    <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Bahasa Melayu&pageno=1&topic=all" style="text-decoration:none; color:#000000">
+                        <p>MCQ Questions</p>
+                    </a>
+                    <a href="myquestionsliststr.php?yearform=<?php echo $yearform ?>&subject=Bahasa Melayu&pageno=1&topic=all" style="text-decoration:none; color:#000000">
+                        <p>Structured Questions</p>
+                    </a>
+                </div>
             </div>
             <div class="column-card">
-                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Pendidikan Islam&pageno=1" style="text-decoration:none; color:#000000">
+                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Pendidikan Islam&pageno=1&topic=all" style="text-decoration:none; color:#000000">
                     <div class="card">
                         <h3>Pendidikan Islam</h3>
                         <p>10 Subjects</p>
