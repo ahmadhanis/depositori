@@ -15,7 +15,7 @@ if ($_SESSION["session_id"]) {
         $searchkey = addslashes($_GET['search']);
         if ($topic == 'all') {
             $sqllistquestions = "SELECT * FROM tbl_questions_str INNER JOIN tbl_user ON tbl_questions_str.user_email = tbl_user.email WHERE tbl_questions_str.form = '$yearform' AND tbl_questions_str.subject_name = '$subject' AND tbl_questions_str.question LIKE '%$searchkey%' ORDER BY tbl_questions_str.date_created DESC";
-        }else{
+        } else {
             $sqllistquestions = "SELECT * FROM tbl_questions_str INNER JOIN tbl_user ON tbl_questions_str.user_email = tbl_user.email WHERE tbl_questions_str.form = '$yearform' AND tbl_questions_str.subject_name = '$subject' AND tbl_questions_str.question LIKE '%$searchkey%' AND tbl_questions_str.topic = '$topic' ORDER BY tbl_questions_str.date_created DESC";
         }
     } else {
@@ -117,15 +117,20 @@ function limitStr($str)
     <div class="main" style="overflow-x:auto">
         <?php
         $num = 1;
+        if ($pageno == 1) {
+            $num = 1;
+        } else {
+            $num = $pageno * 10;
+        }
         echo "<div class='row-question'>";
         foreach ($rows as $question) {
             echo "<div class='column-question'>";
             echo " <div class='card-question'>";
             echo "<p align='left'>" . ($question['topic']) . "</p>";
             echo "<p align='left'>" . $num++ . ". " . ($question['question']) . "</p>";
-            echo "<p align='left'>A.  " . ($question['ans']) . "</p>";
-            echo "<p align='right'>" . date_format(date_create($question['date_created']), 'd/m/y H:i A') ;
-            echo "<br>" . $question['name'] ;
+            echo "<p align='left'>Ans:.  " . ($question['ans']) . "</p>";
+            echo "<p align='right'>" . date_format(date_create($question['date_created']), 'd/m/y H:i A');
+            echo "<br>" . $question['name'];
             echo "<br>" . $question['school'] . "</p>";
             echo "</div>";
             echo "</div>";
@@ -135,7 +140,7 @@ function limitStr($str)
         echo "<div class='row-pages'>";
         echo "<center>";
         for ($page = 1; $page <= $number_of_page; $page++) {
-            echo '<a href = "questionslist.php?pageno=' . $page . '&yearform=' . $yearform . '&subject=' . $subject . '&topic=' . $topic .'">&nbsp&nbsp' . $page .' </a>';
+            echo '<a href = "questionslist.php?pageno=' . $page . '&yearform=' . $yearform . '&subject=' . $subject . '&topic=' . $topic . '">&nbsp&nbsp' . $page . ' </a>';
         }
         echo " ( " . $pageno . " )";
         echo "</center>";

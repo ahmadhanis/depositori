@@ -64,7 +64,7 @@ function uploadImage($email)
             <div class="container">
                 <form name="registerForm" action="../php/register.php" onsubmit="return validateRegForm()" method="post" enctype="multipart/form-data">
                     <div class="row-single">
-                        <img class="imgselection" src="../images/profile/profile.png" margin="10px"><br>
+                        <img class="imgselection" src="../images/profile/profile.png" margin="10px" ><br>
                         <input type="file" onchange="previewFile()" name="fileToUpload" id="fileToUpload"><br>
                     </div>
                     <div class="row">

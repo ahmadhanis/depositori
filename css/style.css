@@ -90,8 +90,6 @@ html, body {
     color: black;
 }
 
-
-
 label {
     padding: 12px 12px 12px 0;
     display: inline-block;
@@ -142,12 +140,18 @@ textarea {
     resize: none;
 }
 
-
-
 img {
-    width: 70%;
+    width: 50%;
     height: auto;
-    max-width: 500px;
+    max-width: 350px;
+    border-radius: 10%;
+}
+
+.imgselection {
+    width: 200px;
+    width: 50%;
+    border-radius: 10%;
+    min-width: 350px;
 }
 
 input[type=text], input[type=tel], input[type=password], select {
@@ -178,7 +182,6 @@ input[type=submit] {
     float: right;
     width: 100%;
 }
-
 
 button[type=submit] {
     background-color: #1abc9c;
@@ -379,7 +382,6 @@ td {
     .header p {
         font-size: 4vw;
     }
-    
     .column {
         width: 100%;
         display: block;
@@ -405,7 +407,6 @@ td {
     .row {
         width: 100%;
     }
-   
     .column-question {
         width: 100%;
         display: block;
@@ -426,25 +427,30 @@ td {
         border: 1px solid #ccc;
         box-sizing: border-box;
     }
-    .container{
+    .container {
         padding-top: 10px;
         padding-bottom: 20px;
+        padding-left: 2px;
+        padding-right: 2px;
     }
     form {
         width: 100%;
-        margin: 5px;
+        padding: 5px auto;
     }
-    .main{
-        margin:10px;
+    .main {
+        margin: 10px;
         padding-bottom: 50px;
         text-align: center;
+    }
+    .main-landing{
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 }
 
 /* Responsive layout - when the screen is more than 601px wide ********************************************************/
 
 @media screen and (min-width: 601px) {
- 
     .header h1 {
         font-size: 4vw;
     }
@@ -487,22 +493,24 @@ td {
         border: 1px solid #ccc;
         box-sizing: border-box;
     }
-    .container{
+    .container {
         padding-top: 40px;
-        padding-bottom: 30px;
+        padding-bottom: 40px;
         width: 50%;
     }
     form {
         padding-top: 20px;
-        padding-bottom: 40px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-bottom: 20px;
+        padding-left: 1px;
+        padding-right: 1px;
         width: 100%;
     }
-    .main{
-        margin:10px;
+    .main {
+        margin: 10px;
         padding-bottom: 50px;
         text-align: center;
     }
+    .main-landing{
+        padding-top: 150px;
+    }
 }
-

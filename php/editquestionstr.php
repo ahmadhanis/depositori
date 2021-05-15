@@ -133,7 +133,7 @@ if ($_SESSION["session_id"]) {
             <input id="idsubject" name="subject" type="hidden" value=<?php echo "$subject" ?>>
             <input id="qid" name="qid" type="hidden" value=<?php echo "$qid" ?>>
             <input id="idpageno" name="pageno" type="hidden" value=<?php echo "$pageno" ?>>
-            <input type="submit" name="submit" value="Update">
+            <div class="row"> <input type="submit" name="submit" value="Update"></div>
         </form>
     </div>
 

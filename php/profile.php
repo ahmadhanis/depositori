@@ -87,8 +87,8 @@ function uploadImage($email)
 
                 <form name="updateprofileForm" action="profile.php" onsubmit="return validateUpdForm()" method="post" enctype="multipart/form-data">
                     <div class="row-single">
-                        <img class="imgselection" src="../images/profile/<?php echo $username ?>.png ?" height="100" width="100"><br>
-                        <input type="file" onchange="previewFile()" name="fileToUpload" id="fileToUpload"><br>
+                        <img class="imgselection" src="../images/profile/<?php echo $username ?>.png ?" ><br>
+                        <input type="file" onchange="previewFile()" name="fileToUpload" id="fileToUpload" accept="image/*"><br>
                     </div>
                     <div class="row">
                         <div class="col-25">

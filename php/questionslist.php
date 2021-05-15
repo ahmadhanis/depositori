@@ -117,6 +117,11 @@ function limitStr($str)
 
         <?php
         $num = 1;
+        if ($pageno == 1){
+            $num = 1;
+        }else{
+            $num = $pageno * 10;
+        }
         echo "<div class='row-question'>";
         foreach ($rows as $question) {
             echo "<div class='column-question'>";

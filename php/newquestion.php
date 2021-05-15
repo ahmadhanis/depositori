@@ -23,7 +23,7 @@ if ($_SESSION["session_id"]) {
             try {
                 $conn->exec($sqlinsert);
                 echo "<script> alert('Success')</script>";
-                echo "<script> window.location.replace('../php/myquestionslist.php?yearform=$yearform&subject=$subject&pageno=1')</script>";
+                echo "<script> window.location.replace('../php/myquestionslist.php?yearform=$yearform&subject=$subject&pageno=1&topic=$topic')</script>";
             } catch (PDOException $e) {
                 echo "<script> alert('Failed')</script>";
             }

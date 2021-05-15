@@ -1,8 +1,10 @@
 <?php
 session_start();
+
 if ($_SESSION["session_id"]) {
     $username = $_SESSION["email"];
     $name = $_SESSION["name"];
+   
 } else {
     echo "<script> alert('Session not available. Please login')</script>";
     echo "<script> window.location.replace('../php/login.php')</script>";
@@ -55,7 +57,6 @@ if ($_SESSION["session_id"]) {
                     <div class="card" type="submit">
                         <h3>Form 1</h3>
                         <p>10 Subjects</p>
-                        <p>10 new questions today</p>
                     </div>
                 </a>
             </div>
@@ -65,7 +66,6 @@ if ($_SESSION["session_id"]) {
                     <div class="card">
                         <h3>Form 2</h3>
                         <p>10 Subjects</p>
-                        <p>10 new questions today</p>
                     </div>
                 </a>
             </div>
@@ -76,7 +76,6 @@ if ($_SESSION["session_id"]) {
                     <div class="card">
                         <h3>Form 3</h3>
                         <p>10 Subjects</p>
-                        <p>10 new questions today</p>
 
                     </div>
                 </a>
@@ -87,7 +86,6 @@ if ($_SESSION["session_id"]) {
                     <div class="card">
                         <h3>Form 4</h3>
                         <p>10 Subjects</p>
-                        <p>10 new questions today</p>
 
                     </div>
                 </a>
@@ -100,7 +98,6 @@ if ($_SESSION["session_id"]) {
                     <div class="card">
                         <h3>Form 5</h3>
                         <p>10 Subjects</p>
-                        <p>10 new questions today</p>
                     </div>
                 </a>
             </div>
@@ -109,7 +106,6 @@ if ($_SESSION["session_id"]) {
                     <div class="card">
                         <h3>Form 6</h3>
                         <p>10 Subjects</p>
-                        <p>10 new questions today</p>
                     </div>
                 </a>
             </div>

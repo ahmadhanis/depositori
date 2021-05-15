@@ -9,6 +9,7 @@ if ($_SESSION["session_id"]) {
     $subject = $_GET['subject'];
     $qid = $_GET['qid'];
     $pageno = $_GET['pageno'];
+    $topic = $_GET['topic'];
     $sqllistquestion = "SELECT * FROM tbl_questions_mcq WHERE user_email = '$user_email' AND q_id = '$qid'";
     $stmt = $conn->prepare($sqllistquestion);
     $stmt->execute();
@@ -31,7 +32,7 @@ if ($_SESSION["session_id"]) {
                 try {
                     $conn->exec($sqlupdate);
                     echo "<script> alert('Update Success')</script>";
-                    echo "<script> window.location.replace('../php/myquestionslist.php?yearform=$yearform&subject=$subject&pageno=$pageno')</script>";
+                    echo "<script> window.location.replace('../php/myquestionslist.php?yearform=$yearform&subject=$subject&pageno=$pageno&topic=$topic')</script>";
                 } catch (PDOException $e) {
                     echo "<script> alert('Failed')</script>";
                 }
@@ -188,6 +189,7 @@ if ($_SESSION["session_id"]) {
             <input id="idsubject" name="subject" type="hidden" value=<?php echo "$subject" ?>>
             <input id="qid" name="qid" type="hidden" value=<?php echo "$qid" ?>>
             <input id="idpageno" name="pageno" type="hidden" value=<?php echo "$pageno" ?>>
+            
             <div class="row">
                 <input type="submit" name="submit" value="Update">
             </div>

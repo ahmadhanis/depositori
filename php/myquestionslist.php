@@ -120,49 +120,52 @@ function limitStr($str)
                 <input id="idform" name="yearform" type="hidden" value="<?php echo "$yearform" ?>">
                 <input id="idsubject" name="subject" type="hidden" value="<?php echo "$subject" ?>">
                 <input id="idpageno" name="pageno" type="hidden" value="<?php echo "$pageno" ?>">
+
                 <button type="submit" name="button" value="search">search</button>
             </div>
         </form>
-    </div>
-    <?php
-    $num = 1;
-    echo "<div class='row-question'>";
-    foreach ($rows as $question) {
-        $qid = $question['q_id'];
-        echo "<div class='column-question'>";
-        echo " <div class='card-question'>";
-        echo "<p align='right'><a href='myquestionslist.php?button=delete&yearform=$yearform&subject=$subject&qid=$qid&pageno=$pageno' 
-        class='fa fa-remove' onclick='return deleteDialog()'></a>&nbsp&nbsp<a href='editquestion.php?yearform=$yearform&subject=$subject&qid=$qid&pageno=$pageno' 
+
+        <?php
+        $num = 1;
+        if ($pageno == 1){
+            $num = 1;
+        }else{
+            $num = $pageno * 10;
+        }
+        echo "<div class='row-question'>";
+        foreach ($rows as $question) {
+            $qid = $question['q_id'];
+            $topicno = $question['topic'];
+            echo "<div class='column-question'>";
+            echo " <div class='card-question'>";
+            echo "<p align='right'><a href='myquestionslist.php?button=delete&yearform=$yearform&subject=$subject&qid=$qid&pageno=$pageno&topic=$topicno' 
+        class='fa fa-remove' onclick='return deleteDialog()'></a>&nbsp&nbsp<a href='editquestion.php?yearform=$yearform&subject=$subject&qid=$qid&pageno=$pageno&topic=$topicno'  
         class='fa fa-edit''></a></p>";
-        echo "<p align='left'>" . $num++ . ". " . ($question['question']) . "</p>";
-        echo "<p align='left'>A.  " . ($question['ans_a']) . "</p>";
-        echo "<p align='left'>B.  " . ($question['ans_b']) . "</p>";
-        echo "<p align='left'>C.  " . ($question['ans_c']) . "</p>";
-        echo "<p align='left'>D.  " . ($question['ans_d']) . "</p>";
-        echo "<p align='left'>Ans:  " . ($question['ans']) . "</p>";
-        echo "<p align='right'>" . date_format(date_create($question['date_created']), 'd/m/y H:i A') . "</p>";
+            echo "<p align='left'>" . ($question['topic']) . "</p>";
+            echo "<p align='left'>" . $num++ . ". " . ($question['question']) . "</p>";
+            echo "<p align='left'>A.  " . ($question['ans_a']) . "</p>";
+            echo "<p align='left'>B.  " . ($question['ans_b']) . "</p>";
+            echo "<p align='left'>C.  " . ($question['ans_c']) . "</p>";
+            echo "<p align='left'>D.  " . ($question['ans_d']) . "</p>";
+            echo "<p align='left'>Ans:  " . ($question['ans']) . "</p>";
+            echo "<p align='right'>" . date_format(date_create($question['date_created']), 'd/m/y H:i A') . "</p>";
+            echo "</div>";
+            echo "</div>";
+        }
+
         echo "</div>";
+        echo "<div class='row-pages'>";
+        echo "<center>";
+        for ($page = 1; $page <= $number_of_page; $page++) {
+            echo '<a href = "myquestionslist.php?pageno=' . $page . '&yearform=' . $yearform . '&subject=' . $subject . '&topic=' . $topic . '">&nbsp&nbsp' . $page . ' </a>';
+        }
+        echo " ( " . $pageno . " )";
+        echo "</center>";
         echo "</div>";
-    }
-
-    echo "</div>";
-    echo "<div class='row-pages'>";
-    echo "<center>";
-    for ($page = 1; $page <= $number_of_page; $page++) {
-        echo '<a href = "myquestionslist.php?pageno=' . $page . '&yearform=' . $yearform . '&subject=' . $subject . '&topic=' . $topic . '">&nbsp&nbsp' . $page . ' </a>';
-    }
-    echo " ( " . $pageno . " )";
-    echo "</center>";
-    echo "</div>";
-    ?>
-    <a href="newquestion.php?yearform=<?php echo $yearform ?>&subject=<?php echo $subject ?>&pageno=<?php echo $pageno ?>" class="float">
-        <i class="fa fa-plus my-float"></i>
-    </a>
-    </div>
-    <div class="listquestion">
-
-    </div>
-
+        ?>
+        <a href="newquestion.php?yearform=<?php echo $yearform ?>&subject=<?php echo $subject ?>&pageno=<?php echo $pageno ?>" class="float">
+            <i class="fa fa-plus my-float"></i>
+        </a>
     </div>
     <div class="bottomnavbar">
         <a href="../index.html">Home</a>

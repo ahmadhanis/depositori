@@ -1,9 +1,74 @@
 <?php
 session_start();
+include_once("dbconnect.php");
+
 if ($_SESSION["session_id"]) {
     $username = $_SESSION["email"];
     $name = $_SESSION["name"];
     $yearform = $_GET['yearform'];
+
+    $sqlform1 = "SELECT * FROM tbl_questions_mcq WHERE form = '$yearform' AND subject_name = 'Mathematic' AND user_email = '$username'";
+    $sqlform2 = "SELECT * FROM tbl_questions_mcq WHERE form = '$yearform' AND subject_name = 'English' AND user_email = '$username'";
+    $sqlform3 = "SELECT * FROM tbl_questions_mcq WHERE form = '$yearform' AND subject_name = 'Science' AND user_email = '$username'";
+    $sqlform4 = "SELECT * FROM tbl_questions_mcq WHERE form = '$yearform' AND subject_name = 'History' AND user_email = '$username'";
+    $sqlform5 = "SELECT * FROM tbl_questions_mcq WHERE form = '$yearform' AND subject_name = 'Bahasa Melayu' AND user_email = '$username'";
+    $sqlform6 = "SELECT * FROM tbl_questions_mcq WHERE form = '$yearform' AND subject_name = 'Pendidikan Islam' AND user_email = '$username'";
+
+    $stmt = $conn->prepare($sqlform1);
+    $stmt->execute();
+    $qform1mcq =  $number_of_result = $stmt->rowCount();
+
+    $stmt = $conn->prepare($sqlform2);
+    $stmt->execute();
+    $qform2mcq = $number_of_result = $stmt->rowCount();
+
+    $stmt = $conn->prepare($sqlform3);
+    $stmt->execute();
+    $qform3mcq = $number_of_result = $stmt->rowCount();
+
+    $stmt = $conn->prepare($sqlform4);
+    $stmt->execute();
+    $qform4mcq = $number_of_result = $stmt->rowCount();
+
+    $stmt = $conn->prepare($sqlform5);
+    $stmt->execute();
+    $qform5mcq = $number_of_result = $stmt->rowCount();
+
+    $stmt = $conn->prepare($sqlform6);
+    $stmt->execute();
+    $qform6mcq = $number_of_result = $stmt->rowCount();
+
+
+    $sqlform1str = "SELECT * FROM tbl_questions_str WHERE form = '$yearform' AND subject_name = 'Mathematic' AND user_email = '$username'";
+    $sqlform2str = "SELECT * FROM tbl_questions_str WHERE form = '$yearform' AND subject_name = 'English' AND user_email = '$username'";
+    $sqlform3str = "SELECT * FROM tbl_questions_str WHERE form = '$yearform' AND subject_name = 'Science' AND user_email = '$username'";
+    $sqlform4str = "SELECT * FROM tbl_questions_str WHERE form = '$yearform' AND subject_name = 'History' AND user_email = '$username'";
+    $sqlform5str = "SELECT * FROM tbl_questions_str WHERE form = '$yearform' AND subject_name = 'Bahasa Melayu' AND user_email = '$username'";
+    $sqlform6str = "SELECT * FROM tbl_questions_str WHERE form = '$yearform' AND subject_name = 'Pendidikan Islam' AND user_email = '$username'";
+
+    $stmt = $conn->prepare($sqlform1str);
+    $stmt->execute();
+    $qform1str =  $number_of_result = $stmt->rowCount();
+
+    $stmt = $conn->prepare($sqlform2str);
+    $stmt->execute();
+    $qform2str = $number_of_result = $stmt->rowCount();
+
+    $stmt = $conn->prepare($sqlform3str);
+    $stmt->execute();
+    $qform3str = $number_of_result = $stmt->rowCount();
+
+    $stmt = $conn->prepare($sqlform4str);
+    $stmt->execute();
+    $qform4str = $number_of_result = $stmt->rowCount();
+
+    $stmt = $conn->prepare($sqlform5str);
+    $stmt->execute();
+    $qform5str = $number_of_result = $stmt->rowCount();
+
+    $stmt = $conn->prepare($sqlform6str);
+    $stmt->execute();
+    $qform6str = $number_of_result = $stmt->rowCount();
 } else {
     echo "<script> alert('Session not available. Please login')</script>";
     echo "<script> window.location.replace('../php/login.php')</script>";
@@ -56,10 +121,10 @@ if ($_SESSION["session_id"]) {
                 <div class="card" type="submit">
                     <h3>Mathematic</h3>
                     <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Mathematic&pageno=1&topic=all" style="text-decoration:none; color:#000000">
-                        <p>MCQ Questions</p>
+                        <p>MCQ Questions: <?php echo $qform1mcq ?></p>
                     </a>
                     <a href="myquestionsliststr.php?yearform=<?php echo $yearform ?>&subject=Mathematic&pageno=1&topic=all" style="text-decoration:none; color:#000000">
-                        <p>Structured Questions</p>
+                        <p>Structured Questions: <?php echo $qform1str ?></p>
                     </a>
                 </div>
             </div>
@@ -68,10 +133,10 @@ if ($_SESSION["session_id"]) {
                 <div class="card" type="submit">
                     <h3>English</h3>
                     <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=English&pageno=1&topic=all" style="text-decoration:none; color:#000000">
-                        <p>MCQ Questions</p>
+                        <p>MCQ Questions: <?php echo $qform2mcq ?></p>
                     </a>
                     <a href="myquestionsliststr.php?yearform=<?php echo $yearform ?>&subject=English&pageno=1&topic=all" style="text-decoration:none; color:#000000">
-                        <p>Structured Questions</p>
+                        <p>Structured Questions: <?php echo $qform2str ?></p>
                     </a>
                 </div>
             </div>
@@ -80,10 +145,10 @@ if ($_SESSION["session_id"]) {
                 <div class="card" type="submit">
                     <h3>Science</h3>
                     <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Science&pageno=1&topic=all" style="text-decoration:none; color:#000000">
-                        <p>MCQ Questions</p>
+                        <p>MCQ Questions: <?php echo $qform3mcq ?></p>
                     </a>
                     <a href="myquestionsliststr.php?yearform=<?php echo $yearform ?>&subject=Science&pageno=1&topic=all" style="text-decoration:none; color:#000000">
-                        <p>Structured Questions</p>
+                        <p>Structured Questions: <?php echo $qform3str ?></p>
                     </a>
                 </div>
             </div>
@@ -92,10 +157,10 @@ if ($_SESSION["session_id"]) {
                 <div class="card" type="submit">
                     <h3>History</h3>
                     <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=History&pageno=1&topic=all" style="text-decoration:none; color:#000000">
-                        <p>MCQ Questions</p>
+                        <p>MCQ Questions: <?php echo $qform4mcq ?></p>
                     </a>
                     <a href="myquestionsliststr.php?yearform=<?php echo $yearform ?>&subject=History&pageno=1&topic=all" style="text-decoration:none; color:#000000">
-                        <p>Structured Questions</p>
+                        <p>Structured Questions: <?php echo $qform4str ?></p>
                     </a>
                 </div>
             </div>
@@ -105,21 +170,23 @@ if ($_SESSION["session_id"]) {
                 <div class="card" type="submit">
                     <h3>Bahasa Melayu</h3>
                     <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Bahasa Melayu&pageno=1&topic=all" style="text-decoration:none; color:#000000">
-                        <p>MCQ Questions</p>
+                        <p>MCQ Questions: <?php echo $qform5mcq ?></p>
                     </a>
                     <a href="myquestionsliststr.php?yearform=<?php echo $yearform ?>&subject=Bahasa Melayu&pageno=1&topic=all" style="text-decoration:none; color:#000000">
-                        <p>Structured Questions</p>
+                        <p>Structured Questions: <?php echo $qform5str ?></p>
                     </a>
                 </div>
             </div>
             <div class="column-card">
-                <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Pendidikan Islam&pageno=1&topic=all" style="text-decoration:none; color:#000000">
-                    <div class="card">
-                        <h3>Pendidikan Islam</h3>
-                        <p>10 Subjects</p>
-                        <p>10 new questions today</p>
-                    </div>
-                </a>
+                <div class="card" type="submit">
+                    <h3>Pendidikan Islam</h3>
+                    <a href="myquestionslist.php?yearform=<?php echo $yearform ?>&subject=Pendidikan Islam&pageno=1&topic=all" style="text-decoration:none; color:#000000">
+                        <p>MCQ Questions: <?php echo $qform6mcq ?></p>
+                    </a>
+                    <a href="myquestionsliststr.php?yearform=<?php echo $yearform ?>&subject=Pendidikan Islam&pageno=1&topic=all" style="text-decoration:none; color:#000000">
+                        <p>Structured Questions: <?php echo $qform6str ?></p>
+                    </a>
+                </div>
             </div>
         </div>
 
