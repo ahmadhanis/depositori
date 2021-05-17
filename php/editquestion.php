@@ -69,7 +69,7 @@ if ($_SESSION["session_id"]) {
         <a href="depository.php">Depository</a>
         <a href="mydepository.php">My Depository</a>
         <a href="profile.php">My Profile</a>
-        <a href="#">Contact Us</a>
+        <a href="contactus.php">Contact Us</a>
         <a href="../php/login.php" onclick="logout()" class="right">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="mytopnavFunction()">
             <i class="fa fa-bars"></i>

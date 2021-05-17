@@ -120,11 +120,10 @@ label {
 }
 
 .card-question {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 16px;
+    padding: 8px;
     text-align: center;
-    background-color: #f1f1f1;
-    margin: 16px;
+    margin: 8px;
+    display: grid;
 }
 
 a {
@@ -140,18 +139,14 @@ textarea {
     resize: none;
 }
 
-img {
-    width: 50%;
-    height: auto;
-    max-width: 350px;
-    border-radius: 10%;
-}
-
 .imgselection {
+    height: 200px;
     width: 200px;
-    width: 50%;
-    border-radius: 10%;
-    min-width: 350px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid black;
+    
 }
 
 input[type=text], input[type=tel], input[type=password], select {
@@ -206,7 +201,6 @@ input[type=submit]:hover {
 
 .container {
     border-radius: 5px;
-    background-color: #f2f2f2;
     text-align: center;
 }
 
@@ -220,6 +214,10 @@ input[type=submit]:hover {
     float: left;
     width: 65%;
     text-align: left;
+}
+
+#more {
+    display: none;
 }
 
 /* Clear floats after the columns */
@@ -278,6 +276,7 @@ input[type=submit]:hover {
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 20px;
+    margin: 5px;
     text-align: center;
     background-color: #f1f1f1;
     transition: 0.3s;
@@ -298,16 +297,16 @@ input[type=checkbox] {
     /* Safari and Chrome */
     -o-transform: scale(2);
     /* Opera */
-    transform: scale(2);
-    padding: 10px;
-    color: #1a977e;
+    transform: scale(1.5);
+    padding: 5px;
+    margin: 5px;
 }
 
 /* Might want to wrap a span around your checkbox text */
 
 .checkboxtext {
     /* Checkbox text */
-    font-size: 110%;
+    font-size: 50%;
     display: inline;
     background-color: #1a977e;
 }
@@ -347,6 +346,19 @@ td {
     text-align: left;
     padding: 8px;
     max-height: 22px;
+}
+
+.circular--portrait {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 80%;
+}
+
+.circular--portrait img {
+    width: 50%;
+    height: auto;
 }
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
@@ -413,10 +425,8 @@ td {
         margin-bottom: 20px;
     }
     .card-question {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         padding: 10px;
         text-align: center;
-        background-color: #f1f1f1;
         margin: 10px;
     }
     .selectsearch select {
@@ -433,18 +443,22 @@ td {
         padding-left: 2px;
         padding-right: 2px;
     }
-    form {
-        width: 100%;
-        padding: 5px auto;
-    }
     .main {
         margin: 10px;
         padding-bottom: 50px;
         text-align: center;
     }
-    .main-landing{
-        padding-top: 40px;
-        padding-bottom: 40px;
+    .main-landing {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+    .imgresponsive {
+        width: 80%;
+        height: auto;
+    }
+    form {
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }
 
@@ -498,19 +512,24 @@ td {
         padding-bottom: 40px;
         width: 50%;
     }
-    form {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        padding-left: 1px;
-        padding-right: 1px;
-        width: 100%;
-    }
     .main {
         margin: 10px;
         padding-bottom: 50px;
         text-align: center;
     }
-    .main-landing{
-        padding-top: 150px;
+    .main-landing {
+        padding-top: 200px;
+        padding-bottom: 200px;
+    }
+    .imgresponsive {
+        width: 50%;
+        height: auto;
+    }
+    form {
+        padding-left: 2px;
+        padding-right: px;
+    }
+    .card-question {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

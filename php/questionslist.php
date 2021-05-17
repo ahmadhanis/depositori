@@ -70,7 +70,7 @@ function limitStr($str)
         <a href="depository.php">Depository</a>
         <a href="mydepository.php">My Depository</a>
         <a href="profile.php">My Profile</a>
-        <a href="#">Contact Us</a>
+        <a href="contactus.php">Contact Us</a>
         <a href="../php/login.php" onclick="logout()" class="right">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="mytopnavFunction()">
             <i class="fa fa-bars"></i>
@@ -122,10 +122,10 @@ function limitStr($str)
         }else{
             $num = $pageno * 10;
         }
-        echo "<div class='row-question'>";
+        echo "<div class='card-question'>";
         foreach ($rows as $question) {
-            echo "<div class='column-question'>";
-            echo " <div class='card-question'>";
+           // echo "<div class='column-question'>";
+            echo " <div class='card'>";
             echo "<p align='left'>" . ($question['topic']) . "</p>";
             echo "<p align='left'>" . $num++ . ". " . ($question['question']) . "</p>";
             echo "<p align='left'>A.  " . ($question['ans_a']) . "</p>";
@@ -137,7 +137,7 @@ function limitStr($str)
             echo "<br>" . $question['name'];
             echo "<br>" . $question['school'] . "</p>";
             echo "</div>";
-            echo "</div>";
+           // echo "</div>";
         }
         echo "</div>";
         //pagination 

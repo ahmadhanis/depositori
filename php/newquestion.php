@@ -10,12 +10,12 @@ if ($_SESSION["session_id"]) {
 
     if (isset($_GET['submit'])) {
         $question = addslashes($_GET['question']);
-        $ans_a = $_GET['answera'];
-        $ans_b = $_GET['answerb'];
-        $ans_c = $_GET['answerc'];
-        $ans_d = $_GET['answerd'];
-        $ans = $_GET['answer'];
-        $topic = $_GET['topic'];
+        $ans_a = addslashes($_GET['answera']);
+        $ans_b = addslashes($_GET['answerb']);
+        $ans_c = addslashes($_GET['answerc']);
+        $ans_d = addslashes($_GET['answerd']);
+        $ans = addslashes($_GET['answer']);
+        $topic = addslashes($_GET['topic']);
         if ($ans === "noselection" || $topic == "noselection") {
             echo "<script> alert('Please select answer')</script>";
         } else {
@@ -59,7 +59,7 @@ if ($_SESSION["session_id"]) {
         <a href="depository.php">Depository</a>
         <a href="mydepository.php">My Depository</a>
         <a href="profile.php">My Profile</a>
-        <a href="#">Contact Us</a>
+        <a href="contactus.php">Contact Us</a>
         <a href="../php/login.php" onclick="logout()" class="right">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="mytopnavFunction()">
             <i class="fa fa-bars"></i>

@@ -84,7 +84,7 @@ function limitStr($str)
         <a href="depository.php">Depository</a>
         <a href="mydepository.php">My Depository</a>
         <a href="profile.php">My Profile</a>
-        <a href="#">Contact Us</a>
+        <a href="contactus.php">Contact Us</a>
         <a href="../php/login.php" onclick="logout()" class="right">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="mytopnavFunction()">
             <i class="fa fa-bars"></i>
@@ -132,12 +132,12 @@ function limitStr($str)
         }else{
             $num = $pageno * 10;
         }
-        echo "<div class='row-question'>";
+        echo "<div class='card-question'>";
         foreach ($rows as $question) {
             $qid = $question['q_id'];
             $topicno = $question['topic'];
-            echo "<div class='column-question'>";
-            echo " <div class='card-question'>";
+            echo "<div class='card'>";
+           // echo " <div class='card-question'>";
             echo "<p align='right'><a href='myquestionslist.php?button=delete&yearform=$yearform&subject=$subject&qid=$qid&pageno=$pageno&topic=$topicno' 
         class='fa fa-remove' onclick='return deleteDialog()'></a>&nbsp&nbsp<a href='editquestion.php?yearform=$yearform&subject=$subject&qid=$qid&pageno=$pageno&topic=$topicno'  
         class='fa fa-edit''></a></p>";
@@ -149,7 +149,7 @@ function limitStr($str)
             echo "<p align='left'>D.  " . ($question['ans_d']) . "</p>";
             echo "<p align='left'>Ans:  " . ($question['ans']) . "</p>";
             echo "<p align='right'>" . date_format(date_create($question['date_created']), 'd/m/y H:i A') . "</p>";
-            echo "</div>";
+            //echo "</div>";
             echo "</div>";
         }
 

@@ -74,7 +74,7 @@ function uploadImage($email)
         <a href="depository.php">Depository</a>
         <a href="mydepository.php">My Depository</a>
         <a href="profile.php">My Profile</a>
-        <a href="#">Contact Us</a>
+        <a href="contactus.php">Contact Us</a>
         <a href="../php/login.php" onclick="logout()" class="right">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="mytopnavFunction()">
             <i class="fa fa-bars"></i>
@@ -87,7 +87,7 @@ function uploadImage($email)
 
                 <form name="updateprofileForm" action="profile.php" onsubmit="return validateUpdForm()" method="post" enctype="multipart/form-data">
                     <div class="row-single">
-                        <img class="imgselection" src="../images/profile/<?php echo $username ?>.png ?" ><br>
+                        <img class="imgselection" class="circular--portrait" src="../images/profile/<?php echo $username ?>.png ?" ><br>
                         <input type="file" onchange="previewFile()" name="fileToUpload" id="fileToUpload" accept="image/*"><br>
                     </div>
                     <div class="row">

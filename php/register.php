@@ -60,72 +60,73 @@ function uploadImage($email)
     </div>
 
     <div class="main">
-        <center><img src="../images/jpnlogo.png">
+        <center><img src="../images/jpnlogo.png" class="imgresponsive">
             <div class="container">
                 <form name="registerForm" action="../php/register.php" onsubmit="return validateRegForm()" method="post" enctype="multipart/form-data">
-                    <div class="row-single">
-                        <img class="imgselection" src="../images/profile/profile.png" margin="10px" ><br>
-                        <input type="file" onchange="previewFile()" name="fileToUpload" id="fileToUpload"><br>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="fname">Name</label>
+                    <center>
+                        <div class="row-single">
+                            <img class="imgselection" src="../images/profile/profile.png" class="circular--portrait"><br>
+                            <input type="file" onchange="previewFile()" name="fileToUpload" id="fileToUpload"><br>
                         </div>
-                        <div class="col-75">
-                            <input type="text" id="idname" name="name" placeholder="Your name..">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="fname">Name</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="idname" name="name" placeholder="Your name..">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="lname">Email</label>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="lname">Email</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="idemail" name="email" placeholder="Your last name..">
+                            </div>
                         </div>
-                        <div class="col-75">
-                            <input type="text" id="idemail" name="email" placeholder="Your last name..">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="lphone">Phone</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="tel" id="idphone" name="phone" placeholder="Your phone number..">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="lphone">Phone</label>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="school">School</label>
+                            </div>
+                            <div class="col-75">
+                                <select name="school" id="idschool">
+                                    <option value="noselection">Please select your school</option>
+                                    <option value="SK Alor Setar">SK Alor Setar</option>
+                                    <option value="SK Batu Hampar">SK Batu Hampar</option>
+                                    <option value="SK Titi Gajah">SK Titi Gajah</option>
+                                    <option value="SK Taman Aman">SK Taman Aman</option>
+                                    <option value="SK (Felda) Bukit Tangga">SK (Felda) Bukit Tangga</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-75">
-                            <input type="tel" id="idphone" name="phone" placeholder="Your phone number..">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="lpassword">Password</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="password" id="idpass" name="passworda" placeholder="Your password..">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="school">School</label>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="lpassword">Password</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="password" id="idpassb" name="passwordb" placeholder="Re-enter password">
+                            </div>
                         </div>
-                        <div class="col-75">
-                            <select name="school" id="idschool">
-                                <option value="noselection">Please select your school</option>
-                                <option value="SK Alor Setar">SK Alor Setar</option>
-                                <option value="SK Batu Hampar">SK Batu Hampar</option>
-                                <option value="SK Titi Gajah">SK Titi Gajah</option>
-                                <option value="SK Taman Aman">SK Taman Aman</option>
-                                <option value="SK (Felda) Bukit Tangga">SK (Felda) Bukit Tangga</option>
-                            </select>
+                        <div class="row">
+                            <input type="submit" name="submit" value="Submit">
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="lpassword">Password</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="password" id="idpass" name="passworda" placeholder="Your password..">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="lpassword">Password</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="password" id="idpassb" name="passwordb" placeholder="Re-enter password">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <input type="submit" name="submit" value="Submit">
-                    </div>
-
+                    </center>
                 </form>
 
             </div>

@@ -53,9 +53,9 @@ if (isset($_GET["status"])) {
     <div class="topnavbar" id="myTopnav">
         <a href="register.php" class="right">Register</a>
     </div>
-    <div class="main">
+    <div class="main-landing">
         <center>
-            <img src="../images/jpnlogo.png">
+            <img src="../images/jpnlogo.png" class="imgresponsive">
 
             <div class="container">
                 <form name="loginForm" action="../php/login.php" onsubmit="return validateLoginForm()" method="post">

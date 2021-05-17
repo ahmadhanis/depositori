@@ -69,7 +69,7 @@ function limitStr($str)
         <a href="depository.php">Depository</a>
         <a href="mydepository.php">My Depository</a>
         <a href="profile.php">My Profile</a>
-        <a href="#">Contact Us</a>
+        <a href="contactus.php">Contact Us</a>
         <a href="../php/login.php" onclick="logout()" class="right">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="mytopnavFunction()">
             <i class="fa fa-bars"></i>
@@ -112,9 +112,8 @@ function limitStr($str)
                 <button type="submit" name="button" value="search">search</button>
             </div>
         </form>
-    </div>
+    
 
-    <div class="main" style="overflow-x:auto">
         <?php
         $num = 1;
         if ($pageno == 1) {
@@ -122,10 +121,10 @@ function limitStr($str)
         } else {
             $num = $pageno * 10;
         }
-        echo "<div class='row-question'>";
+        echo "<div class='card-question'>";
         foreach ($rows as $question) {
-            echo "<div class='column-question'>";
-            echo " <div class='card-question'>";
+            //echo "<div class='column-question'>";
+            echo " <div class='card'>";
             echo "<p align='left'>" . ($question['topic']) . "</p>";
             echo "<p align='left'>" . $num++ . ". " . ($question['question']) . "</p>";
             echo "<p align='left'>Ans:.  " . ($question['ans']) . "</p>";
@@ -133,14 +132,16 @@ function limitStr($str)
             echo "<br>" . $question['name'];
             echo "<br>" . $question['school'] . "</p>";
             echo "</div>";
-            echo "</div>";
+           // echo "</div>";
         }
         echo "</div>";
+        
         //pagination 
+
         echo "<div class='row-pages'>";
         echo "<center>";
         for ($page = 1; $page <= $number_of_page; $page++) {
-            echo '<a href = "questionslist.php?pageno=' . $page . '&yearform=' . $yearform . '&subject=' . $subject . '&topic=' . $topic . '">&nbsp&nbsp' . $page . ' </a>';
+            echo '<a href = "questionsliststr.php?pageno=' . $page . '&yearform=' . $yearform . '&subject=' . $subject . '&topic=' . $topic . '">&nbsp&nbsp' . $page . ' </a>';
         }
         echo " ( " . $pageno . " )";
         echo "</center>";
