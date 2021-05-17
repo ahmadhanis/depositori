@@ -115,18 +115,20 @@ function limitStr($str)
     
 
         <?php
-        $num = 1;
-        if ($pageno == 1) {
-            $num = 1;
-        } else {
-            $num = $pageno * 10;
-        }
+          $num = 1;
+          if ($pageno == 1){
+              $num = 1;
+          }else if($pageno == 2){
+              $num=($num)+10;
+          }else{
+              $num = $pageno * 10 - 9;
+          }
         echo "<div class='card-question'>";
         foreach ($rows as $question) {
             //echo "<div class='column-question'>";
             echo " <div class='card'>";
             echo "<p align='left'>" . ($question['topic']) . "</p>";
-            echo "<p align='left'>" . $num++ . ". " . ($question['question']) . "</p>";
+            echo "<p align='left'>" . $num++ . "). " . ($question['question']) . "</p>";
             echo "<p align='left'>Ans:.  " . ($question['ans']) . "</p>";
             echo "<p align='right'>" . date_format(date_create($question['date_created']), 'd/m/y H:i A');
             echo "<br>" . $question['name'];

@@ -119,15 +119,17 @@ function limitStr($str)
         $num = 1;
         if ($pageno == 1){
             $num = 1;
+        }else if($pageno == 2){
+            $num=($num)+10;
         }else{
-            $num = $pageno * 10;
+            $num = $pageno * 10 - 9;
         }
         echo "<div class='card-question'>";
         foreach ($rows as $question) {
            // echo "<div class='column-question'>";
             echo " <div class='card'>";
             echo "<p align='left'>" . ($question['topic']) . "</p>";
-            echo "<p align='left'>" . $num++ . ". " . ($question['question']) . "</p>";
+            echo "<p align='left'>" . $num++ . "). " . ($question['question']) . "</p>";
             echo "<p align='left'>A.  " . ($question['ans_a']) . "</p>";
             echo "<p align='left'>B.  " . ($question['ans_b']) . "</p>";
             echo "<p align='left'>C.  " . ($question['ans_c']) . "</p>";

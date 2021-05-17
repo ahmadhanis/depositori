@@ -126,12 +126,14 @@ function limitStr($str)
         </form>
 
         <?php
-        $num = 1;
-        if ($pageno == 1){
             $num = 1;
-        }else{
-            $num = $pageno * 10;
-        }
+            if ($pageno == 1){
+                $num = 1;
+            }else if($pageno == 2){
+                $num=($num)+10;
+            }else{
+                $num = $pageno * 10 - 9;
+            }
         echo "<div class='card-question'>";
         foreach ($rows as $question) {
             $qid = $question['q_id'];
@@ -142,7 +144,7 @@ function limitStr($str)
         class='fa fa-remove' onclick='return deleteDialog()'></a>&nbsp&nbsp<a href='editquestion.php?yearform=$yearform&subject=$subject&qid=$qid&pageno=$pageno&topic=$topicno'  
         class='fa fa-edit''></a></p>";
             echo "<p align='left'>" . ($question['topic']) . "</p>";
-            echo "<p align='left'>" . $num++ . ". " . ($question['question']) . "</p>";
+            echo "<p align='left'>" . $num++ . "). " . ($question['question']) . "</p>";
             echo "<p align='left'>A.  " . ($question['ans_a']) . "</p>";
             echo "<p align='left'>B.  " . ($question['ans_b']) . "</p>";
             echo "<p align='left'>C.  " . ($question['ans_c']) . "</p>";
