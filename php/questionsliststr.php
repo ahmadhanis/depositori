@@ -8,7 +8,7 @@ if ($_SESSION["session_id"]) {
     $yearform = $_GET['yearform'];
     $subject = $_GET['subject'];
     $pageno = (int)$_GET['pageno'];
-    $results_per_page = 10;
+    $results_per_page = 20;
     $page_first_result = ($pageno - 1) * $results_per_page;
     $topic = $_GET['topic'];
     if (isset($_GET['button'])) {

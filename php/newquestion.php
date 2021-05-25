@@ -75,6 +75,7 @@ if ($_SESSION["session_id"]) {
                 echo "<p> Subject Selected " . $subject . "</p>";
                 ?>
             </div>
+            <br>
 
             <form name="questionForm" action="newquestion.php" onsubmit="return validateNewQForm()" method="get">
                 <div class="row">

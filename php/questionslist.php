@@ -8,7 +8,7 @@ if ($_SESSION["session_id"]) {
     $yearform = $_GET['yearform'];
     $subject = $_GET['subject'];
     $pageno = (int)$_GET['pageno'];
-    $results_per_page = 10;
+    $results_per_page = 20;
     $page_first_result = ($pageno - 1) * $results_per_page;
     $topic = $_GET['topic'];
 
@@ -128,16 +128,18 @@ function limitStr($str)
         foreach ($rows as $question) {
            // echo "<div class='column-question'>";
             echo " <div class='card'>";
-            echo "<p align='left'>" . ($question['topic']) . "</p>";
+            echo "<div align='right'><table cellspacing='0' cellpadding='0'><tr><td>". ($question['topic']) ."</td><td><p align='right'><img src=../images/profile/".$question['email'].".png class='avatar'></td><td>" . date_format(date_create($question['date_created']), 'd/m/y H:i A');
+            echo "<br>" . $question['name'];
+            echo "<br>" . $question['school'] . "</p></td></tr></table></div>";
+
+           // echo "<p align='left'>" . ($question['topic']) . "</p>";
             echo "<p align='left'>" . $num++ . "). " . ($question['question']) . "</p>";
             echo "<p align='left'>A.  " . ($question['ans_a']) . "</p>";
             echo "<p align='left'>B.  " . ($question['ans_b']) . "</p>";
             echo "<p align='left'>C.  " . ($question['ans_c']) . "</p>";
             echo "<p align='left'>D.  " . ($question['ans_d']) . "</p>";
             echo "<p align='left'>Ans:  " . ($question['ans']) . "</p>";
-            echo "<p align='right'>" . date_format(date_create($question['date_created']), 'd/m/y H:i A');
-            echo "<br>" . $question['name'];
-            echo "<br>" . $question['school'] . "</p>";
+            
             echo "</div>";
            // echo "</div>";
         }

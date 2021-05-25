@@ -9,6 +9,18 @@ if ($_SESSION["session_id"]) {
     $phone = $_SESSION["phone"];
     $datereg = $_SESSION["datereg"];
     if (isset($_POST['submit'])) {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $school = $_POST['school'];
+        $question = $_POST['question'];
+        try {
+            $sqlinsert = "INSERT INTO tbl_contact(name,email,school,phone,comment) VALUES('$name','$email','$school','$phone','$question')";
+            $conn->exec($sqlinsert);
+            echo "<script>alert('Success. We will contact you soon')</script>";
+        } catch (PDOException $e) {
+            echo "<script>alert('Failed')</script>";
+        }
     }
 } else {
     echo "<script> alert('Session not available. Please login')</script>";
@@ -49,10 +61,10 @@ if ($_SESSION["session_id"]) {
 
     <div class="main">
         <center>
-            
+
             <div class="container">
-                <form name="contactusform" action="contactus.php" onsubmit="return validateUpdForm()" method="post">
-                <h2>Contact Us</h2>
+                <form name="contactusform" action="contactus.php" method="post">
+                    <h2>Contact Us</h2>
                     <div class="row-single">
                     </div>
                     <div class="row">
@@ -60,7 +72,7 @@ if ($_SESSION["session_id"]) {
                             <label for="fname">Name</label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="idname" name="name" placeholder="Your name.." value="<?php echo $name; ?>" disabled>
+                            <input type="text" id="idname" name="name" placeholder="Your name.." value="<?php echo $name; ?>" readonly="readonly">
                         </div>
                     </div>
                     <div class="row">
@@ -68,7 +80,7 @@ if ($_SESSION["session_id"]) {
                             <label for="lname">Email</label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="idemail" name="email" placeholder="Your email.." value="<?php echo $username; ?>" disabled>
+                            <input type="text" id="idemail" name="email" placeholder="Your email.." value="<?php echo $username; ?>" readonly="readonly">
                         </div>
                     </div>
                     <div class="row">
@@ -76,7 +88,7 @@ if ($_SESSION["session_id"]) {
                             <label for="lphone">Phone</label>
                         </div>
                         <div class="col-75">
-                            <input type="tel" id="idphone" name="phone" placeholder="Your phone number.." value="<?php echo $phone; ?>" disabled>
+                            <input type="tel" id="idphone" name="phone" placeholder="Your phone number.." value="<?php echo $phone; ?>" readonly="readonly">
                         </div>
                     </div>
                     <div class="row">
@@ -84,17 +96,17 @@ if ($_SESSION["session_id"]) {
                             <label for="lschool">School</label>
                         </div>
                         <div class="col-75">
-                            <input type="tel" id="idschool" name="phone"  value="<?php echo $school; ?>" disabled>
+                            <input type="tel" id="idschool" name="school" value="<?php echo $school; ?>" readonly="readonly">
                         </div>
                     </div>
                     <div class="row">
-                    <div class="col-25">
-                        <label for="fname">Question</label>
+                        <div class="col-25">
+                            <label for="fname">Question</label>
+                        </div>
+                        <div class="col-75">
+                            <textarea type="text" cols="110%" rows="5" id="idquestion" name="question" resize="none" placeholder="Your question/issue here" required></textarea>
+                        </div>
                     </div>
-                    <div class="col-75">
-                        <textarea type="text" cols="110%" rows="5" id="idquestion" name="question" resize="none" placeholder="Your question/issue here" required></textarea>
-                    </div>
-                </div>
                     <div class="row">
                         <input type="submit" name="submit" value="Submit">
                     </div>
